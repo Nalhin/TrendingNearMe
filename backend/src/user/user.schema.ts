@@ -12,11 +12,6 @@ export class UserDocument extends Document {
 
   @Prop()
   email: string;
-
-  constructor(partial?: Partial<UserDocument>) {
-    super();
-    Object.assign(this, partial);
-  }
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);

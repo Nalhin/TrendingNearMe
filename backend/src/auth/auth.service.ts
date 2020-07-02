@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthUserResponseDto } from './dto/auth-user.response.dto';
+import { AuthUserResponseDto } from './dto/auth-user-response.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserService } from '../user/user.service';

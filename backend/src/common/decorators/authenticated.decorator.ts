@@ -1,3 +1,10 @@
-import { SetMetadata } from '@nestjs/common';
+import { applyDecorators, SetMetadata } from '@nestjs/common';
+import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
-export const Authenticated = () => SetMetadata('authenticationRequired', true);
+export function Authenticated() {
+  return applyDecorators(
+    SetMetadata('authenticationRequired', true),
+    ApiBearerAuth(),
+    ApiUnauthorizedResponse({ description: 'Unauthorized"' }),
+  );
+}
