@@ -10,6 +10,6 @@ export class UserController {
   @Get('/me')
   @Authenticated()
   me(@ReqUser() user: User): UserResponseDto {
-    return new UserResponseDto(user);
+    return new UserResponseDto(user.toJSON());
   }
 }

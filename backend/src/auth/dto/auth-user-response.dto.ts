@@ -4,9 +4,9 @@ import { Expose, Type } from 'class-transformer';
 export class AuthUserResponseDto {
   @Expose()
   @Type(() => UserResponseDto)
-  user: UserResponseDto;
+  readonly user: UserResponseDto;
   @Expose()
-  token: string;
+  readonly token: string;
 
   constructor(partial?: Partial<AuthUserResponseDto>) {
     Object.assign(this, partial);

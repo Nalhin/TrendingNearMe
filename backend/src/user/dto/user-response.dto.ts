@@ -4,11 +4,11 @@ import { MongoId } from '../../common/decorators/mongo-id';
 export class UserResponseDto {
   @MongoId()
   @Expose()
-  _id: string;
+  readonly _id: string;
   @Expose()
-  username: string;
+  readonly username: string;
   @Expose()
-  email: string;
+  readonly email: string;
 
   constructor(partial?: Partial<UserResponseDto>) {
     Object.assign(this, partial);
