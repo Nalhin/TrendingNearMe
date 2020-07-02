@@ -19,7 +19,6 @@ export class UserService {
   async findOneByUsername(username: string): Promise<User | null> {
     return this.userModel
       .findOne({ username })
-      .lean()
       .exec();
   }
 }
