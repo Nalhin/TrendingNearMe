@@ -11,10 +11,14 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [JwtModule.register({ secret: 'test' })],
-      providers: [AuthService, UserService, {
-        provide: getModelToken(UserDocument.name),
-        useValue: InjectModel(UserDocument.name),
-      }],
+      providers: [
+        AuthService,
+        UserService,
+        {
+          provide: getModelToken(UserDocument.name),
+          useValue: InjectModel(UserDocument.name),
+        },
+      ],
     }).compile();
 
     service = module.get<AuthService>(AuthService);

@@ -10,10 +10,11 @@ import { PassportModule } from '@nestjs/passport';
 import { UserModule } from '../user/user.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
-
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: UserDocument.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: UserDocument.name, schema: UserSchema },
+    ]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync({
@@ -31,5 +32,4 @@ import { JwtStrategy } from './strategies/jwt.strategy';
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
-export class AuthModule {
-}
+export class AuthModule {}

@@ -4,7 +4,7 @@ export class AuthUserResponseDto {
   user: UserResponseDto;
   token: string;
 
-  constructor(partial?:Partial<AuthUserResponseDto>) {
-    Object.assign(this,partial)
+  constructor(partial?: Partial<AuthUserResponseDto>) {
+    Object.assign(this, partial);
   }
 }

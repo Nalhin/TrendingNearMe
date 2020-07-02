@@ -8,10 +8,10 @@ import { UserDocument } from '../user/user.schema';
 
 @Injectable()
 export class AuthService {
-
-  constructor(private readonly userService: UserService, private readonly jwtService: JwtService,
-  ) {
-  }
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async signToken(user: UserDocument): Promise<AuthUserResponseDto> {
     const payload = { username: user.username };
@@ -22,17 +22,20 @@ export class AuthService {
   }
 
   async login(loginUserDto: LoginUserDto): Promise<AuthUserResponseDto> {
-    const user = await this.userService.findOneByUsername(loginUserDto.username);
-    console.log(user)
+    const user = await this.userService.findOneByUsername(
+      loginUserDto.username,
+    );
+    console.log(user);
     if (!user || !(await user.comparePassword(loginUserDto.password))) {
       throw new UnauthorizedException('Invalid credentials.');
     }
     return this.signToken(user);
   }
 
-  async register(registerUserDto: RegisterUserDto): Promise<AuthUserResponseDto> {
+  async register(
+    registerUserDto: RegisterUserDto,
+  ): Promise<AuthUserResponseDto> {
     const savedUser = await this.userService.create(registerUserDto);
     return this.signToken(savedUser);
   }
 }
-

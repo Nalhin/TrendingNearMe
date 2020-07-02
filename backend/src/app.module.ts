@@ -6,6 +6,9 @@ import { join } from 'path';
 import { envSchema } from './config/env.schema';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
+import { RequireAuthGuard } from './common/guards/require-auth.guard';
 
 @Module({
   imports: [
@@ -21,6 +24,15 @@ import { UserModule } from './user/user.module';
     UserModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RequireAuthGuard,
+    },
+  ],
 })
 export class AppModule {}
