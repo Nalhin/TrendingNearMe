@@ -6,11 +6,13 @@ services:
     container_name: mongo_trends
     restart: always
     ports:
-    - "27017:27017"
+      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: trends
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+    env_file:
+      - .env
 
 volumes:
   mongo:
