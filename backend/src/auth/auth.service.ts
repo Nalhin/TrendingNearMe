@@ -11,8 +11,7 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-  ) {
-  }
+  ) {}
 
   async signToken(user: User): Promise<AuthUserResponseDto> {
     const payload = { username: user.username };

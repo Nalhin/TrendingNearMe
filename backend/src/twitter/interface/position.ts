@@ -1,4 +1,4 @@
-export interface Position {
+export interface TwitterPosition {
   lat: string;
   long: string;
 }

@@ -11,6 +11,7 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RequireAuthGuard } from './common/guards/require-auth.guard';
 import { StripPropertiesSerializerInterceptor } from './common/interceptors/strip-properties-serializer.interceptor';
 import { TwitterModule } from './twitter/twitter.module';
+import { TrendsModule } from './trends/trends.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TwitterModule } from './twitter/twitter.module';
     AuthModule,
     UserModule,
     TwitterModule,
+    TrendsModule,
   ],
   controllers: [],
   providers: [
@@ -42,5 +44,4 @@ import { TwitterModule } from './twitter/twitter.module';
     },
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

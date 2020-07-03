@@ -1,20 +1,32 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, map, switchMap } from 'rxjs/operators';
+import { TwitterPosition } from './interface/position';
+import { plainToClass } from 'class-transformer';
+import { TwitterTrendDto } from './dto/twitter-trend.dto';
 
 @Injectable()
 export class TwitterService {
-  constructor(private readonly httpService: HttpService) {
-  }
+  constructor(private readonly httpService: HttpService) {}
 
-  private getClosestLocation(position: Position) {
-    return this.httpService.get('/trends/closest.json', { params: position });
+  private getClosestLocation(position: TwitterPosition) {
+    return this.httpService
+      .get('/trends/closest.json', { params: position })
+      .pipe(map(res => res.data));
   }
 
   private getTrendsNearLocation(locationId: string) {
-    return this.httpService.get('/trend/trends/place.json', { params: { id: locationId } });
+    return this.httpService
+      .get('trends/place.json', { params: { id: locationId } })
+      .pipe(map(res => res.data));
   }
 
-  public getTrends(position: Position){
-    this.getClosestLocation(position).pipe(flatMap((resp)=>this.getTrendsNearLocation(resp.data.woeid)));
-  };
+  public getTrendsForPosition(position: TwitterPosition) {
+    return this.getClosestLocation(position)
+      .pipe(
+        flatMap(([data]) => this.getTrendsNearLocation(data.woeid)),
+        map(([{ trends }]) =>
+          trends.map(trend => plainToClass(TwitterTrendDto, trend)),
+        ),
+      )
+  }
 }

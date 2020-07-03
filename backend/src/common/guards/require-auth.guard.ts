@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class RequireAuthGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {
-  }
+  constructor(private readonly reflector: Reflector) {}
 
   canActivate(
     context: ExecutionContext,

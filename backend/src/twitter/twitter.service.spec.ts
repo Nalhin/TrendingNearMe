@@ -8,9 +8,11 @@ describe('TwitterService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports:[HttpModule.registerAsync({
-        useClass: TwitterHttpConfigService,
-      })],
+      imports: [
+        HttpModule.registerAsync({
+          useClass: TwitterHttpConfigService,
+        }),
+      ],
       providers: [TwitterService],
     }).compile();
 

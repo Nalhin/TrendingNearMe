@@ -16,7 +16,9 @@ export class UserDocument extends Document {
 
 export const UserSchema = SchemaFactory.createForClass(UserDocument);
 
-UserSchema.methods.comparePassword = function(password: string): Promise<boolean> {
+UserSchema.methods.comparePassword = function(
+  password: string,
+): Promise<boolean> {
   return bcrypt.compare(password, this.password);
 };
 
@@ -28,4 +30,3 @@ UserSchema.pre<UserDocument>('save', async function(next) {
 export interface User extends UserDocument {
   comparePassword(password): Promise<boolean>;
 }
-

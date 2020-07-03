@@ -6,7 +6,6 @@ import { User } from './user.schema';
 
 @Controller('user')
 export class UserController {
-
   @Get('/me')
   @Authenticated()
   me(@ReqUser() user: User): UserResponseDto {
