@@ -1,4 +1,4 @@
-import { ClassSerializerInterceptor, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config/mongoose.config';
 import { ConfigModule } from '@nestjs/config';
@@ -10,6 +10,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RequireAuthGuard } from './common/guards/require-auth.guard';
 import { StripPropertiesSerializerInterceptor } from './common/interceptors/strip-properties-serializer.interceptor';
+import { TwitterModule } from './twitter/twitter.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { StripPropertiesSerializerInterceptor } from './common/interceptors/stri
     }),
     AuthModule,
     UserModule,
+    TwitterModule,
   ],
   controllers: [],
   providers: [
