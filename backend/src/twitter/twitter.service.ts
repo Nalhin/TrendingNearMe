@@ -1,12 +1,13 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { flatMap, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { TwitterPosition } from './interface/position';
 import { plainToClass } from 'class-transformer';
 import { TwitterTrendDto } from './dto/twitter-trend.dto';
 
 @Injectable()
 export class TwitterService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) {
+  }
 
   private getClosestLocation(position: TwitterPosition) {
     return this.httpService
@@ -23,10 +24,10 @@ export class TwitterService {
   public getTrendsForPosition(position: TwitterPosition) {
     return this.getClosestLocation(position)
       .pipe(
-        flatMap(([data]) => this.getTrendsNearLocation(data.woeid)),
+        switchMap(([data]) => this.getTrendsNearLocation(data.woeid)),
         map(([{ trends }]) =>
-          trends.map(trend => plainToClass(TwitterTrendDto, trend)),
+          plainToClass(TwitterTrendDto, trends),
         ),
-      )
+      );
   }
 }
