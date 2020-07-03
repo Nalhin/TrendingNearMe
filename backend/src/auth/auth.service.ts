@@ -1,19 +1,20 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthUserResponseDto } from './dto/auth-user.response.dto';
+import { AuthUserResponseDto } from './dto/auth-user-response.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { UserDocument } from '../user/user.schema';
+import { User } from '../user/user.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) {
+  }
 
-  async signToken(user: UserDocument): Promise<AuthUserResponseDto> {
+  async signToken(user: User): Promise<AuthUserResponseDto> {
     const payload = { username: user.username };
     return new AuthUserResponseDto({
       user,
@@ -25,7 +26,6 @@ export class AuthService {
     const user = await this.userService.findOneByUsername(
       loginUserDto.username,
     );
-    console.log(user);
     if (!user || !(await user.comparePassword(loginUserDto.password))) {
       throw new UnauthorizedException('Invalid credentials.');
     }
