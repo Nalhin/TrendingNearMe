@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './config/mongoose.config';
 import { ConfigModule } from '@nestjs/config';
@@ -6,11 +6,12 @@ import { join } from 'path';
 import { envSchema } from './config/env.schema';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RequireAuthGuard } from './common/guards/require-auth.guard';
 import { StripPropertiesSerializerInterceptor } from './common/interceptors/strip-properties-serializer.interceptor';
 import { TwitterModule } from './twitter/twitter.module';
+import { TrendsModule } from './trends/trends.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { TwitterModule } from './twitter/twitter.module';
     AuthModule,
     UserModule,
     TwitterModule,
+    TrendsModule,
   ],
   controllers: [],
   providers: [
@@ -40,7 +42,12 @@ import { TwitterModule } from './twitter/twitter.module';
       provide: APP_INTERCEPTOR,
       useClass: StripPropertiesSerializerInterceptor,
     },
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        transform: true,
+      }),
+    },
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

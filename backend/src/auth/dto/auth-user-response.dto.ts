@@ -7,8 +7,4 @@ export class AuthUserResponseDto {
   readonly user: UserResponseDto;
   @Expose()
   readonly token: string;
-
-  constructor(partial?: Partial<AuthUserResponseDto>) {
-    Object.assign(this, partial);
-  }
 }

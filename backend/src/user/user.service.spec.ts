@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
 import { getModelToken, InjectModel } from '@nestjs/mongoose';
-import { UserDocument } from './user.schema';
+import { User } from './user.schema';
 
 describe('UserService', () => {
   let service: UserService;
@@ -11,8 +11,8 @@ describe('UserService', () => {
       providers: [
         UserService,
         {
-          provide: getModelToken(UserDocument.name),
-          useValue: InjectModel(UserDocument.name),
+          provide: getModelToken(User.name),
+          useValue: InjectModel(User.name),
         },
       ],
     }).compile();

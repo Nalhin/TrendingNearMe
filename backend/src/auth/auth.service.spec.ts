@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { getModelToken, InjectModel } from '@nestjs/mongoose';
-import { UserDocument } from '../user/user.schema';
+import { User } from '../user/user.schema';
 import { JwtModule } from '@nestjs/jwt';
 
 describe('AuthService', () => {
@@ -15,8 +15,8 @@ describe('AuthService', () => {
         AuthService,
         UserService,
         {
-          provide: getModelToken(UserDocument.name),
-          useValue: InjectModel(UserDocument.name),
+          provide: getModelToken(User.name),
+          useValue: InjectModel(User.name),
         },
       ],
     }).compile();

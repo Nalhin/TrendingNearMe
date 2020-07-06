@@ -1,4 +1,8 @@
-import { HttpModuleOptions, HttpModuleOptionsFactory, Injectable } from '@nestjs/common';
+import {
+  HttpModuleOptions,
+  HttpModuleOptionsFactory,
+  Injectable,
+} from '@nestjs/common';
 
 @Injectable()
 export class TwitterHttpConfigService implements HttpModuleOptionsFactory {

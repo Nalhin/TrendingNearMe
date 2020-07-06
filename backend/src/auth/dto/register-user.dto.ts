@@ -1,5 +1,7 @@
-export class RegisterUserDto {
-  readonly username: string;
+import { LoginUserDto } from './login-user.dto';
+import { IsEmail } from 'class-validator';
+
+export class RegisterUserDto extends LoginUserDto {
+  @IsEmail()
   readonly email: string;
-  readonly password: string;
 }
