@@ -12,7 +12,8 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "build": "webpack --mode=production",
-    "profile": "webpack --mode=production --profile"
+    "profile": "webpack --mode=production --profile",
+    "api": "sta -p http://localhost:8000/api-json -o ./src --no-client"
   },
   "husky": {
     "hooks": {
@@ -29,7 +30,8 @@
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
@@ -44,6 +46,7 @@
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "@types/universal-cookie": "^2.2.0",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
     "@typescript-eslint/parser": "^3.5.0",
     "babel-jest": "^26.1.0",
@@ -62,6 +65,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "swagger-typescript-api": "^1.10.0",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "url-loader": "^4.1.0",

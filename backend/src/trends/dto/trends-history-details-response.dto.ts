@@ -1,7 +1,8 @@
 import { MongoId } from '../../common/decorators/mongo-id';
-import { Expose, Type } from 'class-transformer';
+import { Expose } from 'class-transformer';
 import { TrendResponseDto } from './trend-response.dto';
 import { MapCoordinates } from '../../common/types/coordinates.type';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class TrendsHistoryDetailsResponseDto {
   @MongoId()
@@ -9,6 +10,7 @@ export class TrendsHistoryDetailsResponseDto {
   readonly _id: string;
 
   @Expose()
+  @ApiProperty()
   readonly coordinates: MapCoordinates;
 
   @Expose()
