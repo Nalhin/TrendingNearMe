@@ -1,18 +1,15 @@
 import { MongoId } from '../../common/decorators/mongo-id';
 import { Expose } from 'class-transformer';
-import { LocationDto } from './location.dto';
-
+import { MapCoordinates } from '../../common/types/coordinates.type';
 
 export class TrendsHistoryResponseDto {
-
   @MongoId()
   @Expose()
-  _id: string;
+  readonly _id: string;
 
   @Expose()
-  location: LocationDto;
+  readonly coordinates: MapCoordinates;
 
   @Expose()
-  created: Date;
-
+  readonly created: Date;
 }

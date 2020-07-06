@@ -1,32 +1,51 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { TrendsService } from './trends.service';
-import { ReqUser } from '../common/decorators/user.decorator';
-import { User } from '../user/user.schema';
+import {
+  AuthenticatedUser,
+  ReqUser,
+} from '../common/decorators/user.decorator';
 import { Authenticated } from '../common/decorators/authenticated.decorator';
 import { plainToClass } from 'class-transformer';
 import { TrendsHistoryResponseDto } from './dto/trends-history-response.dto';
 import { TrendsHistoryDetailsResponseDto } from './dto/trends-history-details-response.dto';
+import { AuthUser } from '../auth/auth-user.model';
+import { IUser } from '../user/user.schema';
+import { TrendResponseDto } from './dto/trend-response.dto';
+import { map } from 'rxjs/operators';
+import { MongoIdParams } from '../common/params/mongo-id.params';
+import { CoordinatesParams } from './params/coordinates.params';
+import { Observable } from 'rxjs';
 
 @Controller('trends')
 export class TrendsController {
-  constructor(private readonly trendsService: TrendsService) {
-  }
+  constructor(private readonly trendsService: TrendsService) {}
 
   @Get('/location')
-  getTrends(@Query('lat') lat: string, @Query('long') long: string, @ReqUser() user: User) {
-    return this.trendsService.getTrends({ lat, long }, user);
+  getTrends(
+    @Query() { lat, lng }: CoordinatesParams,
+    @ReqUser() user: AuthUser,
+  ): Observable<TrendResponseDto[]> {
+    return this.trendsService
+      .getTrends([lat, lng], user)
+      .pipe(map(trends => plainToClass(TrendResponseDto, trends)));
   }
 
   @Get('/history')
   @Authenticated()
-  async getHistory(@ReqUser() user: User): Promise<TrendsHistoryResponseDto[]> {
-    const history = await this.trendsService.getHistory(user);
-    return plainToClass(TrendsHistoryResponseDto, history);
+  getHistory(
+    @AuthenticatedUser() user: IUser,
+  ): Observable<TrendsHistoryResponseDto[]> {
+    return this.trendsService
+      .getHistory(user)
+      .pipe(map(trends => plainToClass(TrendsHistoryResponseDto, trends)));
   }
 
   @Get('/history/:id')
   @Authenticated()
-  async getHistoryById(@Param('id') id: string, @ReqUser() user: User) {
+  async getHistoryById(
+    @Param() { id }: MongoIdParams,
+    @AuthenticatedUser() user: IUser,
+  ): Promise<TrendsHistoryDetailsResponseDto> {
     const historyDetails = await this.trendsService.getHistoryById(id, user);
     return plainToClass(TrendsHistoryDetailsResponseDto, historyDetails);
   }

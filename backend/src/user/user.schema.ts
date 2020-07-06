@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
 @Schema()
-export class UserDocument extends Document {
+export class User extends Document {
   @Prop()
   username: string;
 
@@ -14,7 +14,7 @@ export class UserDocument extends Document {
   email: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(UserDocument);
+export const UserSchema = SchemaFactory.createForClass(User);
 
 UserSchema.methods.comparePassword = function(
   password: string,
@@ -22,11 +22,11 @@ UserSchema.methods.comparePassword = function(
   return bcrypt.compare(password, this.password);
 };
 
-UserSchema.pre<UserDocument>('save', async function(next) {
+UserSchema.pre<User>('save', async function(next) {
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-export interface User extends UserDocument {
+export interface IUser extends User {
   comparePassword(password): Promise<boolean>;
 }

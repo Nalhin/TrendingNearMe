@@ -1,29 +1,28 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { TwitterTrendDto } from '../twitter/dto/twitter-trend.dto';
 import * as mongoose from 'mongoose';
-import { User, UserDocument } from '../user/user.schema';
-import { LocationDto } from './dto/location.dto';
-
+import { IUser, User } from '../user/user.schema';
+import { TwitterTrend } from '../twitter/twitter-trend.model';
+import { MapCoordinates } from '../common/types/coordinates.type';
 
 @Schema()
-export class TrendsDocument extends Document {
-  @Prop(TwitterTrendDto)
-  trends: [TwitterTrendDto];
+export class Trend extends Document {
+  @Prop(TwitterTrend)
+  trends: [TwitterTrend];
 
-  @Prop(LocationDto)
-  location: LocationDto;
+  @Prop()
+  coordinates: MapCoordinates;
 
   @Prop(
     raw({
       type: mongoose.Schema.Types.ObjectId,
-      ref: UserDocument.name,
+      ref: User.name,
     }),
   )
-  user: User;
+  user: IUser;
 
-  @Prop({ type: Date, default: () => new Date() })
+  @Prop({ type: Date, default: Date.now })
   created: Date;
 }
 
-export const TrendsSchema = SchemaFactory.createForClass(TrendsDocument);
+export const TrendsSchema = SchemaFactory.createForClass(Trend);

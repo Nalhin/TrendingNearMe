@@ -3,14 +3,14 @@ import { TrendsController } from './trends.controller';
 import { TrendsService } from './trends.service';
 import { TwitterModule } from '../twitter/twitter.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TrendsDocument, TrendsSchema } from './trends.schema';
+import { Trend, TrendsSchema } from './trends.schema';
 
 @Module({
-  imports: [TwitterModule, MongooseModule.forFeature([
-    { name: TrendsDocument.name, schema: TrendsSchema },
-  ])],
+  imports: [
+    TwitterModule,
+    MongooseModule.forFeature([{ name: Trend.name, schema: TrendsSchema }]),
+  ],
   controllers: [TrendsController],
   providers: [TrendsService],
 })
-export class TrendsModule {
-}
+export class TrendsModule {}

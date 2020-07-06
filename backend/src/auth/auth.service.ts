@@ -4,7 +4,8 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../user/user.schema';
+import { IUser } from '../user/user.schema';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class AuthService {
@@ -13,9 +14,9 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async signToken(user: User): Promise<AuthUserResponseDto> {
+  async signToken(user: IUser): Promise<AuthUserResponseDto> {
     const payload = { username: user.username };
-    return new AuthUserResponseDto({
+    return plainToClass(AuthUserResponseDto, {
       user,
       token: this.jwtService.sign(payload),
     });
