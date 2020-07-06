@@ -1,5 +1,9 @@
 import { axios } from '@/config/api.config';
-import { TrendResponseDto, TrendsHistoryDetailsResponseDto, TrendsHistoryResponseDto } from '@/Api';
+import {
+  TrendResponseDto,
+  TrendsHistoryDetailsResponseDto,
+  TrendsHistoryResponseDto,
+} from '@/Api';
 
 export function fetchGetTrendsByLocation() {
   return axios.get<TrendResponseDto[]>('/trends/location');

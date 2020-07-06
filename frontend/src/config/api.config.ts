@@ -15,8 +15,6 @@ const axiosOptionsFactory = () => {
   return options;
 };
 
-
 const instance = axio.create(axiosOptionsFactory());
-
 
 export { instance as axios };

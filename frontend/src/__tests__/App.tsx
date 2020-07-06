@@ -1,5 +1,5 @@
 describe('Example', () => {
   it('should be truthy', () => {
-    expect(true).toBe(true)
+    expect(true).toBe(true);
   });
 });

@@ -14,4 +14,3 @@ export class CustomCookies extends Cookies {
 }
 
 export const cookies = new CustomCookies();
-
