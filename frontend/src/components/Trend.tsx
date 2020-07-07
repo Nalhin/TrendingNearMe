@@ -1,14 +1,14 @@
 import React from 'react';
 import { TrendResponseDto } from '@/Api';
-import { Card, CardActions, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import styled from '@emotion/styled';
 
 const StyledCard = styled(Card)`
-margin:8px;
+  margin: 8px;
 `;
 
 interface Props {
-  trend: TrendResponseDto
+  trend: TrendResponseDto;
 }
 
 const Trend: React.FC<Props> = ({ trend: { name, url } }) => {

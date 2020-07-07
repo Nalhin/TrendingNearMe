@@ -15,7 +15,10 @@ const Map: React.FC<Props> = ({ markers, position, onClick }) => {
     <LeafletMap
       center={position}
       zoom={13}
-      style={{ height: '100vh' }}
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
       onClick={onClick}
       doubleClickZoom={false}
     >

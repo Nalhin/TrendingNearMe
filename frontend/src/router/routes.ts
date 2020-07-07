@@ -11,6 +11,6 @@ interface Route {
 export const routes: Route[] = [
   {
     path: '',
-    component: React.lazy(() => import('@/views/home')),
+    component: React.lazy(() => import('@/views/Home')),
   },
 ];

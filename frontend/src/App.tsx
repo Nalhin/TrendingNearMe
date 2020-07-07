@@ -1,12 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import RouteView from '@/router/RouteView';
+import MainLayout from '@/layout/MainLayout';
+import { CssBaseline } from '@material-ui/core';
+import { css, Global } from '@emotion/core';
 
 const App = () => {
   return (
     <div>
+      <Global
+        styles={css`
+          html,
+          body {
+            height: 100%;
+          }
+        `}
+      />
+      <CssBaseline />
       <Router>
-        <RouteView />
+        <MainLayout />
       </Router>
     </div>
   );
