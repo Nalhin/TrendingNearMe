@@ -33,22 +33,27 @@ export interface RegisterUserDto {
 }
 
 export interface TrendResponseDto {
+  promotedContent: boolean | null;
+  tweetVolume: number | null;
   name: string;
   url: string;
-  promotedContent: object;
   query: string;
-  tweetVolume: object;
+}
+
+export interface CoordinatesDto {
+  lat: number;
+  lng: number;
 }
 
 export interface TrendsHistoryResponseDto {
   _id: string;
-  coordinates: object;
+  coordinates: CoordinatesDto;
   created: string;
 }
 
 export interface TrendsHistoryDetailsResponseDto {
   _id: string;
-  coordinates: object;
+  coordinates: CoordinatesDto;
   created: string;
   trends: TrendResponseDto[];
 }

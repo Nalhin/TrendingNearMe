@@ -5,7 +5,6 @@ import RouteView from '@/router/RouteView';
 const App = () => {
   return (
     <div>
-      Hello world
       <Router>
         <RouteView />
       </Router>

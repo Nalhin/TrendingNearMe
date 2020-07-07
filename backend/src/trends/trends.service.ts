@@ -6,8 +6,8 @@ import { Trend } from './trends.schema';
 import { IUser } from '../user/user.schema';
 import { tap } from 'rxjs/operators';
 import { AuthUser } from '../auth/auth-user.model';
-import { MapCoordinates } from '../common/types/coordinates.type';
 import { from } from 'rxjs';
+import { CoordinatesDto } from './dto/coordinates.dto';
 
 @Injectable()
 export class TrendsService {
@@ -17,7 +17,7 @@ export class TrendsService {
     private readonly trendsModel: Model<Trend>,
   ) {}
 
-  public getTrends(coordinates: MapCoordinates, user: AuthUser) {
+  public getTrends(coordinates: CoordinatesDto, user: AuthUser) {
     return this.twitterService.getTrendsForPosition(coordinates).pipe(
       tap(trends => {
         if (user.isAuthenticated()) {

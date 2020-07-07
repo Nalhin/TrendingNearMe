@@ -3,15 +3,15 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { IUser, User } from '../user/user.schema';
 import { TwitterTrend } from '../twitter/twitter-trend.model';
-import { MapCoordinates } from '../common/types/coordinates.type';
+import { CoordinatesDto } from './dto/coordinates.dto';
 
 @Schema()
 export class Trend extends Document {
   @Prop(TwitterTrend)
   trends: [TwitterTrend];
 
-  @Prop()
-  coordinates: MapCoordinates;
+  @Prop(CoordinatesDto)
+  coordinates: CoordinatesDto;
 
   @Prop(
     raw({

@@ -17,6 +17,6 @@ export class RequireAuthGuard implements CanActivate {
       return true;
     }
 
-    return context.switchToHttp().getRequest().user;
+    return !!context.switchToHttp().getRequest().user;
   }
 }

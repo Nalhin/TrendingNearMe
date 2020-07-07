@@ -13,20 +13,23 @@ import { IUser } from '../user/user.schema';
 import { TrendResponseDto } from './dto/trend-response.dto';
 import { map } from 'rxjs/operators';
 import { MongoIdParams } from '../common/params/mongo-id.params';
-import { CoordinatesParams } from './params/coordinates.params';
+import { CoordinatesDto } from './dto/coordinates.dto';
 import { Observable } from 'rxjs';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('trends')
 @Controller('trends')
 export class TrendsController {
-  constructor(private readonly trendsService: TrendsService) {}
+  constructor(private readonly trendsService: TrendsService) {
+  }
 
   @Get('/location')
   getTrends(
-    @Query() { lat, lng }: CoordinatesParams,
+    @Query()coords: CoordinatesDto,
     @ReqUser() user: AuthUser,
   ): Observable<TrendResponseDto[]> {
     return this.trendsService
-      .getTrends([lat, lng], user)
+      .getTrends(coords, user)
       .pipe(map(trends => plainToClass(TrendResponseDto, trends)));
   }
 
