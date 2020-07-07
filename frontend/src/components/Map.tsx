@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapMarker } from '@/types/map-marker';
+import { MapMarker } from '@/types/MapMarker';
 import { CoordinatesDto } from '@/Api';
 
 interface Props {

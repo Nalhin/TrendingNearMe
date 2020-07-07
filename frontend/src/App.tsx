@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import MainLayout from '@/layout/MainLayout';
 import { CssBaseline } from '@material-ui/core';
 import { css, Global } from '@emotion/core';
+import { UserProvider } from '@/hooks/useUser';
 
 const App = () => {
   return (
@@ -15,10 +16,12 @@ const App = () => {
           }
         `}
       />
-      <CssBaseline />
-      <Router>
-        <MainLayout />
-      </Router>
+      <CssBaseline/>
+      <UserProvider>
+        <Router>
+          <MainLayout/>
+        </Router>
+      </UserProvider>
     </div>
   );
 };

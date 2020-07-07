@@ -9,31 +9,61 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import { ChevronRight } from '@material-ui/icons';
-import { ExitToApp, PersonAdd, MeetingRoom, History } from '@material-ui/icons';
+import {
+  ExitToApp,
+  PersonAdd,
+  MeetingRoom,
+  History,
+  Public,
+} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { User } from '@/models/user.model';
+import { useUser } from '@/hooks/useUser';
 
 interface DrawerItem {
   text: string;
   icon: React.ReactElement;
+  to: string;
+  hide?: (user: User) => boolean
 }
 
 const drawerItems: DrawerItem[] = [
   {
+    text: 'Map',
+    icon: <Public/>,
+    to: '/',
+  },
+  {
     text: 'Login',
-    icon: <ExitToApp />,
+    icon: <ExitToApp/>,
+    to: '/login',
+    hide: (user) => user.isAuthenticated,
   },
   {
     text: 'Sign up',
-    icon: <PersonAdd />,
+    icon: <PersonAdd/>,
+    to: '/sign-up',
+    hide: (user) => user.isAuthenticated,
   },
   {
     text: 'Personal history',
-    icon: <History />,
+    icon: <History/>,
+    to: '/personal-history',
+    hide: (user) => !user.isAuthenticated,
   },
   {
     text: 'Logout',
-    icon: <MeetingRoom />,
+    icon: <MeetingRoom/>,
+    to: '/logout',
+    hide: (user) => !user.isAuthenticated,
   },
 ];
+
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: inherit;
+`;
 
 interface Props {
   isOpen: boolean;
@@ -41,20 +71,24 @@ interface Props {
 }
 
 const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
+  const { user } = useUser();
+
   return (
     <Drawer variant="persistent" anchor="left" open={isOpen}>
       <div>
         <IconButton onClick={open}>
-          <ChevronRight />
+          <ChevronRight/>
         </IconButton>
       </div>
-      <Divider />
+      <Divider/>
       <List>
-        {drawerItems.map((item) => (
-          <ListItem button key={item.text}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
+        {drawerItems.filter(item => !item.hide || !item.hide(user)).map((item) => (
+          <StyledLink to={{ pathname: item.to }} key={item.text}>
+            <ListItem button>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text}/>
+            </ListItem>
+          </StyledLink>
         ))}
       </List>
     </Drawer>

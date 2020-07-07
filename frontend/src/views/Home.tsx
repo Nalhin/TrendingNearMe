@@ -2,10 +2,10 @@ import React from 'react';
 import Map from '@/components/Map';
 import { useMutation } from 'react-query';
 import { fetchGetTrendsByLocation } from '@/api/trends.api';
-import { CoordinatesDto } from '@/Api';
 import { LeafletMouseEvent } from 'leaflet';
 import styled from '@emotion/styled';
 import Trend from '@/components/Trend';
+import { useCurrentPosition } from '@/hooks/useCurrentPosition';
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -24,8 +24,7 @@ const StyledPanel = styled.div`
 
 const Home: React.FC = () => {
   const [mutate, { data }] = useMutation(fetchGetTrendsByLocation);
-
-  const [position] = React.useState<CoordinatesDto>({ lat: 31, lng: 23 });
+  const { position } = useCurrentPosition();
   const [markers] = React.useState([]);
 
   const onClick = async (e: LeafletMouseEvent) => {
@@ -35,7 +34,6 @@ const Home: React.FC = () => {
   return (
     <StyledContainer>
       <Map position={position} markers={markers} onClick={onClick} />
-
       <StyledPanel>
         {data?.data.map((trend) => (
           <Trend key={trend.name} trend={trend} />
