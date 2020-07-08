@@ -1,14 +1,15 @@
-import { AuthUserResponseDto } from '@/Api';
+import { UserResponseDto } from '@/Api';
 
 export abstract class BaseUser {
-  protected constructor(public readonly user: AuthUserResponseDto) {}
+  protected constructor(public readonly user: UserResponseDto) {
+  }
 
   abstract get isAuthenticated(): boolean;
 }
 
 export class AnonymousUser extends BaseUser {
   constructor() {
-    super({} as AuthUserResponseDto);
+    super({} as UserResponseDto);
   }
 
   get isAuthenticated() {
@@ -17,7 +18,7 @@ export class AnonymousUser extends BaseUser {
 }
 
 export class AuthenticatedUser extends BaseUser {
-  constructor(user: AuthUserResponseDto) {
+  constructor(user: UserResponseDto) {
     super(user);
   }
 

@@ -28,6 +28,16 @@ export const routes: Route[] = [
     authValidator: noAuthValidator,
   },
   {
+    path: '/personal-history',
+    component: React.lazy(() => import('@/views/PersonalHistory')),
+    authValidator: authValidator,
+  },
+  {
+    path: '/personal-history/:id',
+    component: React.lazy(() => import('@/views/PersonalHistoryDetails')),
+    authValidator: authValidator,
+  },
+  {
     path: '',
     exact: true,
     component: React.lazy(() => import('@/views/Home')),
