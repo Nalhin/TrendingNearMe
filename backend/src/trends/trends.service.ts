@@ -3,11 +3,11 @@ import { TwitterService } from '../twitter/twitter.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Trend } from './trends.schema';
-import { IUser } from '../user/user.schema';
+import { AppUser } from '../user/user.schema';
 import { tap } from 'rxjs/operators';
-import { AuthUser } from '../auth/auth-user.model';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { CoordinatesDto } from './dto/coordinates.dto';
+import { TwitterTrend } from '../twitter/twitter-trend.model';
 
 @Injectable()
 export class TrendsService {
@@ -15,23 +15,24 @@ export class TrendsService {
     private readonly twitterService: TwitterService,
     @InjectModel(Trend.name)
     private readonly trendsModel: Model<Trend>,
-  ) {}
+  ) {
+  }
 
-  public getTrends(coordinates: CoordinatesDto, user: AuthUser) {
+  public getTrends(coordinates: CoordinatesDto, user?: AppUser): Observable<TwitterTrend[]> {
     return this.twitterService.getTrendsForPosition(coordinates).pipe(
       tap(trends => {
-        if (user.isAuthenticated()) {
+        if (user) {
           new this.trendsModel({
             trends,
             coordinates,
-            user: user.nativeUser,
+            user,
           }).save();
         }
       }),
     );
   }
 
-  public getHistory(user: IUser) {
+  public getHistory(user: AppUser) {
     return from(
       this.trendsModel
         .find({ user })
@@ -40,7 +41,7 @@ export class TrendsService {
     );
   }
 
-  public async getHistoryById(id: string, user: IUser) {
+  public async getHistoryById(id: string, user: AppUser) {
     const trend = await this.trendsModel
       .findById(id)
       .lean()

@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '@/models/user.model';
+import { User } from '@/models/User';
 
 export type AuthValidator = (user: User) => boolean;
 
@@ -33,9 +33,8 @@ export const routes: Route[] = [
     authValidator: authValidator,
   },
   {
-    path: '/personal-history/:id',
-    component: React.lazy(() => import('@/views/PersonalHistoryDetails')),
-    authValidator: authValidator,
+    path:'/logout',
+    component: React.lazy(() => import('@/views/Logout')),
   },
   {
     path: '',

@@ -1,4 +1,4 @@
-import { axios } from '@/config/api.config';
+import { axios } from '@/config/apiConfig';
 import { AuthUserResponseDto, LoginUserDto, RegisterUserDto } from '@/Api';
 
 export function fetchLoginUser(loginUserDto: LoginUserDto) {

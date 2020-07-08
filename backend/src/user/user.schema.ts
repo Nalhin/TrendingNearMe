@@ -27,6 +27,6 @@ UserSchema.pre<User>('save', async function(next) {
   next();
 });
 
-export interface IUser extends User {
+export interface AppUser extends User {
   comparePassword(password): Promise<boolean>;
 }

@@ -1,11 +1,11 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { IUser, User } from '../user/user.schema';
+import { AppUser, User } from '../user/user.schema';
 import { TwitterTrend } from '../twitter/twitter-trend.model';
 import { CoordinatesDto } from './dto/coordinates.dto';
 
-@Schema()
+@Schema({ timestamps: { createdAt: 'created' } })
 export class Trend extends Document {
   @Prop(TwitterTrend)
   trends: [TwitterTrend];
@@ -19,10 +19,8 @@ export class Trend extends Document {
       ref: User.name,
     }),
   )
-  user: IUser;
+  user: AppUser;
 
-  @Prop({ type: Date, default: Date.now })
-  created: Date;
 }
 
 export const TrendsSchema = SchemaFactory.createForClass(Trend);

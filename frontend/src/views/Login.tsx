@@ -1,22 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { fetchLoginUser } from '@/api/auth.api';
+import { fetchLoginUser } from '@/api/authApi';
 import { Button, Card, TextField } from '@material-ui/core';
 import { useUser } from '@/hooks/useUser';
 import styled from '@emotion/styled';
 
 const StyledCard = styled(Card)`
-  max-width:400px;
-  margin:0 auto;
- `;
-
-const StyledForm = styled.form` 
-  display:flex;
-  flex-direction: column;
-  padding:12px;
+  max-width: 400px;
+  margin: 0 auto;
 `;
 
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+`;
 
 interface LoginForm {
   username: string;
@@ -32,14 +31,13 @@ const Login = () => {
     try {
       const response = await mutate(data);
       authenticateUser(response.data);
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   return (
     <StyledCard>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <TextField name="username" inputRef={register} label="Username"/>
+        <TextField name="username" inputRef={register} label="Username" />
         <TextField
           name="password"
           inputRef={register}

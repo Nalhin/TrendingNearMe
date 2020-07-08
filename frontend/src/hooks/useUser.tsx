@@ -1,10 +1,10 @@
 import React from 'react';
-import { AnonymousUser, AuthenticatedUser, User } from '@/models/user.model';
+import { AnonymousUser, AuthenticatedUser, User } from '@/models/User';
 import { AuthUserResponseDto } from '@/Api';
-import { axios } from '@/config/api.config';
-import { cookies } from '@/config/cookies.config';
-import { CookieTypes } from '@/types/cookie.types';
-import { fetchMe } from '@/api/user.api';
+import { axios } from '@/config/apiConfig';
+import { cookies } from '@/config/cookiesConfig';
+import { CookieTypes } from '@/types/CookieTypes';
+import { fetchMe } from '@/api/userApi';
 
 interface UserContextProps {
   user: User;
@@ -45,7 +45,7 @@ const UserProvider: React.FC = ({ children }) => {
           const resp = await fetchMe();
           setUser(new AuthenticatedUser(resp.data));
         } catch (e) {
-          logoutUser()
+          logoutUser();
         }
       }
     })();

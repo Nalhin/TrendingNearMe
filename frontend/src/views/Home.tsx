@@ -1,7 +1,7 @@
 import React from 'react';
 import Map from '@/components/Map';
 import { useMutation } from 'react-query';
-import { fetchGetTrendsByLocation } from '@/api/trends.api';
+import { fetchGetTrendsByLocation } from '@/api/trendsApi';
 import { LeafletMouseEvent } from 'leaflet';
 import styled from '@emotion/styled';
 import Trend from '@/components/Trend';
@@ -25,7 +25,6 @@ const StyledPanel = styled.div`
 const Home: React.FC = () => {
   const [mutate, { data }] = useMutation(fetchGetTrendsByLocation);
   const { position } = useCurrentPosition();
-  const [markers] = React.useState([]);
 
   const onClick = async (e: LeafletMouseEvent) => {
     await mutate(e.latlng);
@@ -33,7 +32,7 @@ const Home: React.FC = () => {
 
   return (
     <StyledContainer>
-      <Map position={position} markers={markers} onClick={onClick} />
+      <Map position={position} onClick={onClick} />
       <StyledPanel>
         {data?.data.map((trend) => (
           <Trend key={trend.name} trend={trend} />

@@ -4,22 +4,23 @@ import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { AuthValidator } from '@/router/routes';
 
 interface CustomRouteProps extends RouteProps {
-  redirectTo?: string
-  authValidator?: AuthValidator
+  redirectTo?: string;
+  authValidator?: AuthValidator;
 }
 
-
-const CustomRoute: React.FC<CustomRouteProps> = ({ component: Component, authValidator, redirectTo = '/', ...rest }) => {
+const CustomRoute: React.FC<CustomRouteProps> = ({
+  component: Component,
+  authValidator,
+  redirectTo = '/',
+  ...rest
+}) => {
   const { user } = useUser();
   if (!Component) {
     return null;
   }
 
   if (!authValidator) {
-    return <Route
-      {...rest}
-      component={Component}
-    />;
+    return <Route {...rest} component={Component} />;
   }
 
   return (
@@ -29,7 +30,7 @@ const CustomRoute: React.FC<CustomRouteProps> = ({ component: Component, authVal
         authValidator(user) ? (
           <Component {...props} />
         ) : (
-          <Redirect to={redirectTo}/>
+          <Redirect to={redirectTo} />
         )
       }
     />

@@ -16,10 +16,10 @@ const App = () => {
           }
         `}
       />
-      <CssBaseline/>
+      <CssBaseline />
       <UserProvider>
         <Router>
-          <MainLayout/>
+          <MainLayout />
         </Router>
       </UserProvider>
     </div>

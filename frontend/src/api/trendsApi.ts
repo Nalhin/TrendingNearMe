@@ -1,4 +1,4 @@
-import { axios } from '@/config/api.config';
+import { axios } from '@/config/apiConfig';
 import {
   CoordinatesDto,
   TrendResponseDto,
@@ -19,6 +19,6 @@ export function fetchGetTrendsHistory() {
   return axios.get<TrendsHistoryResponseDto[]>('/trends/history');
 }
 
-export function fetchGetTrendDetailsId(id: string) {
-  return axios.get<TrendsHistoryDetailsResponseDto[]>(`/trends/history/${id}`);
+export function fetchGetTrendDetailsId(key: string, id: string) {
+  return axios.get<TrendsHistoryDetailsResponseDto>(`/trends/history/${id}`);
 }

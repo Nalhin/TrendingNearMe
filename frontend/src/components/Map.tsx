@@ -1,16 +1,15 @@
 import React from 'react';
-import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map as LeafletMap, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapMarker } from '@/types/MapMarker';
 import { CoordinatesDto } from '@/Api';
 
 interface Props {
-  markers: MapMarker[];
+  markers?: JSX.Element | JSX.Element[];
   position: CoordinatesDto;
-  onClick: (e: any) => void;
+  onClick?: (e: any) => void;
 }
 
-const Map: React.FC<Props> = ({ markers, position, onClick }) => {
+const Map: React.FC<Props> = ({ markers = [], position, onClick }) => {
   return (
     <LeafletMap
       center={position}
@@ -26,11 +25,7 @@ const Map: React.FC<Props> = ({ markers, position, onClick }) => {
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {markers.map((marker, i) => (
-        <Marker position={marker.position} key={i}>
-          <Popup>Example</Popup>
-        </Marker>
-      ))}
+      {markers}
     </LeafletMap>
   );
 };
