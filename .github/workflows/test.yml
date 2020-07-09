@@ -18,15 +18,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./frontend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
       - name: Run lint
-        run: npm run lint
-        working-directory: ./frontend
+        run: nx lint frontend
         env:
           CI: true
 
@@ -44,15 +42,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./frontend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
       - name: Run tests
-        run: npm run test:cov
-        working-directory: ./frontend
+        run: nx test frontend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:
@@ -73,15 +69,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./backend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./backend
       - name: Run lint
-        run: npm run lint
-        working-directory: ./backend
+        run: nx lint backend
         env:
           CI: true
 
@@ -99,15 +93,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./backend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./backend
       - name: Run tests
-        run: npm run test:cov
-        working-directory: ./backend
+        run: nx test backend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:
