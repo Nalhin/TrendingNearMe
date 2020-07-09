@@ -20,7 +20,6 @@ export class Trend extends Document {
     }),
   )
   user: AppUser;
-
 }
 
 export const TrendsSchema = SchemaFactory.createForClass(Trend);

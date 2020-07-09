@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 
 @Schema()
 export class User extends Document {
-  @Prop()
+  @Prop({ unique: true })
   username: string;
 
   @Prop()

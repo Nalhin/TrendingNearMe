@@ -9,8 +9,4 @@ export class UserResponseDto {
   readonly username: string;
   @Expose()
   readonly email: string;
-
-  constructor(partial?: Partial<UserResponseDto>) {
-    Object.assign(this, partial);
-  }
 }

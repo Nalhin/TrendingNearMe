@@ -12,8 +12,7 @@ export class UserService {
   ) {}
 
   async create(registerUserDto: RegisterUserDto): Promise<AppUser> {
-    const createdUser = new this.userModel(registerUserDto);
-    return await createdUser.save();
+    return this.userModel.create(registerUserDto);
   }
 
   async findOneByUsername(username: string): Promise<AppUser | null> {

@@ -7,8 +7,7 @@ import { CoordinatesDto } from '../trends/dto/coordinates.dto';
 
 @Injectable()
 export class TwitterService {
-  constructor(private readonly httpService: HttpService) {
-  }
+  constructor(private readonly httpService: HttpService) {}
 
   private getClosestLocation({ lat, lng }: CoordinatesDto) {
     return this.httpService

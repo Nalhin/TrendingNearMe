@@ -15,10 +15,12 @@ export class TrendsService {
     private readonly twitterService: TwitterService,
     @InjectModel(Trend.name)
     private readonly trendsModel: Model<Trend>,
-  ) {
-  }
+  ) {}
 
-  public getTrends(coordinates: CoordinatesDto, user?: AppUser): Observable<TwitterTrend[]> {
+  public getTrends(
+    coordinates: CoordinatesDto,
+    user?: AppUser,
+  ): Observable<TwitterTrend[]> {
     return this.twitterService.getTrendsForPosition(coordinates).pipe(
       tap(trends => {
         if (user) {

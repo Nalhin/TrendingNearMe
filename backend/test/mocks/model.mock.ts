@@ -1,10 +1,12 @@
-export class MockModel {
-  constructor(private data) {
-  }
-
-  save = jest.fn().mockResolvedValue(this.data);
-  static find = jest.fn()
-  static findOne = jest.fn()
-  static findOneAndUpdate = jest.fn()
-  static deleteOne = jest.fn()
+export function mockModelFactory(mock?: any) {
+  return {
+    new: jest.fn().mockResolvedValue(mock),
+    constructor: jest.fn().mockResolvedValue(mock),
+    find: jest.fn(),
+    findOne: jest.fn(),
+    update: jest.fn(),
+    create: jest.fn(),
+    remove: jest.fn(),
+    exec: jest.fn(),
+  };
 }

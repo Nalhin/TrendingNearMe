@@ -28,7 +28,6 @@ import { TrendsModule } from './trends/trends.module';
     TwitterModule,
     TrendsModule,
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_GUARD,
