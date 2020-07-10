@@ -14,7 +14,10 @@
             "outputPath": "dist/apps/backend",
             "main": "apps/backend/src/main.ts",
             "tsConfig": "apps/backend/tsconfig.app.json",
-            "assets": ["apps/backend/src/assets"]
+            "assets": [
+              "apps/backend/src/assets"
+            ],
+            "webpackConfig": "apps/backend/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -44,7 +47,10 @@
               "apps/backend/tsconfig.app.json",
               "apps/backend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/backend/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/backend/**/*"
+            ]
           }
         },
         "test": {
@@ -123,7 +129,10 @@
               "apps/frontend/tsconfig.app.json",
               "apps/frontend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/frontend/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend/**/*"
+            ]
           }
         },
         "test": {
@@ -158,8 +167,13 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/frontend-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**/*"]
+            "tsConfig": [
+              "apps/frontend-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-e2e/**/*"
+            ]
           }
         }
       }

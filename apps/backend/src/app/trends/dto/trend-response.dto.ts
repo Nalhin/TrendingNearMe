@@ -3,8 +3,10 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class TrendResponseDto {
   @Expose()
+  @ApiProperty()
   readonly name: string;
   @Expose()
+  @ApiProperty()
   readonly url: string;
   @Expose()
   @ApiProperty({
@@ -13,6 +15,7 @@ export class TrendResponseDto {
   })
   readonly promotedContent: boolean | null;
   @Expose()
+  @ApiProperty()
   readonly query: string;
   @Expose()
   @ApiProperty({

@@ -11,14 +11,19 @@ import { map } from 'rxjs/operators';
 import { MongoIdParams } from '../common/params/mongo-id.params';
 import { CoordinatesDto } from './dto/coordinates.dto';
 import { Observable } from 'rxjs';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('trends')
 @Controller('trends')
 export class TrendsController {
-  constructor(private readonly trendsService: TrendsService) {}
+  constructor(private readonly trendsService: TrendsService) {
+  }
 
   @Get('/location')
+  @ApiCreatedResponse({
+    description: 'Returns current twitter trends near provided location.',
+    type: [TrendResponseDto],
+  })
   getTrends(
     @Query() coords: CoordinatesDto,
     @ReqUser() user?: AppUser,
@@ -28,6 +33,10 @@ export class TrendsController {
       .pipe(map(trends => plainToClass(TrendResponseDto, trends)));
   }
 
+  @ApiOkResponse({
+    description: 'Returns trend search history.',
+    type: [TrendsHistoryResponseDto],
+  })
   @Get('/history')
   @Authenticated()
   getHistory(@ReqUser() user: AppUser): Observable<TrendsHistoryResponseDto[]> {
@@ -36,6 +45,10 @@ export class TrendsController {
       .pipe(map(trends => plainToClass(TrendsHistoryResponseDto, trends)));
   }
 
+  @ApiOkResponse({
+    description: 'Returns trend search history details.',
+    type: TrendsHistoryDetailsResponseDto,
+  })
   @Get('/history/:id')
   @Authenticated()
   async getHistoryById(

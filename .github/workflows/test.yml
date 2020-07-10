@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run lint
-        run: nx lint frontend
+        run: npm run nx lint frontend
         env:
           CI: true
 
@@ -48,7 +48,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests
-        run: nx test frontend --code-coverage
+        run: npm run nx test frontend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:
@@ -75,7 +75,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run lint
-        run: nx lint backend
+        run: npm run nx lint backend
         env:
           CI: true
 
@@ -99,7 +99,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests
-        run: nx test backend --code-coverage
+        run: npm run nx test backend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:

@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle('Trending near me!')
     .setDescription('Check out the trending tweets near user location')
     .setVersion('1.0')
-    .addTag('trending')
+    .addTag('trends')
     .addBearerAuth()
     .build();
 
