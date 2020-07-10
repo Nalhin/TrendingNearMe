@@ -26,7 +26,7 @@ interface RegisterForm {
 
 const Register = () => {
   const { register, handleSubmit } = useForm<RegisterForm>();
-  const { authenticateUser } = useUser();
+  const { authenticateUser, logoutUser } = useUser();
   const [mutate] = useMutation(fetchRegisterUser);
 
   const onSubmit = async (data: RegisterForm) => {
@@ -34,20 +34,21 @@ const Register = () => {
       const response = await mutate(data);
       authenticateUser(response.data);
     } catch (e) {
+      logoutUser();
     }
   };
 
   return (
     <StyledCard>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <TextField name="username" inputRef={register} label="Username" />
+        <TextField name="username" inputRef={register} label="Username"/>
         <TextField
           name="password"
           inputRef={register}
           label="Password"
           type="password"
         />
-        <TextField name="email" inputRef={register} label="Email" />
+        <TextField name="email" inputRef={register} label="Email"/>
         <Button type="submit">Login</Button>
       </StyledForm>
     </StyledCard>

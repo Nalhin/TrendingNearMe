@@ -26,7 +26,7 @@ interface LoginForm {
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
-  const { authenticateUser } = useUser();
+  const { authenticateUser, logoutUser } = useUser();
   const [mutate] = useMutation(fetchLoginUser);
 
   const onSubmit = async (data: LoginForm) => {
@@ -34,6 +34,7 @@ const Login = () => {
       const response = await mutate(data);
       authenticateUser(response.data);
     } catch (e) {
+      logoutUser();
     }
   };
 

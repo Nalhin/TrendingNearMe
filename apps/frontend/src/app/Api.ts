@@ -45,13 +45,13 @@ export interface CoordinatesDto {
   lng: number;
 }
 
-export interface TrendsHistoryResponseDto {
+export interface TrendHistoryResponseDto {
   _id: string;
   coordinates: CoordinatesDto;
   created: string;
 }
 
-export interface TrendsHistoryDetailsResponseDto {
+export interface TrendHistoryDetailsResponseDto {
   _id: string;
   coordinates: CoordinatesDto;
   created: string;

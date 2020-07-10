@@ -3,7 +3,7 @@ import { Expose, Type } from 'class-transformer';
 import { CoordinatesDto } from './coordinates.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class TrendsHistoryResponseDto {
+export class TrendHistoryResponseDto {
   @MongoId()
   @Expose()
   readonly _id: string;

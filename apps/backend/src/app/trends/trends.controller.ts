@@ -3,8 +3,8 @@ import { TrendsService } from './trends.service';
 import { ReqUser } from '../common/decorators/user.decorator';
 import { Authenticated } from '../common/decorators/authenticated.decorator';
 import { plainToClass } from 'class-transformer';
-import { TrendsHistoryResponseDto } from './dto/trends-history-response.dto';
-import { TrendsHistoryDetailsResponseDto } from './dto/trends-history-details-response.dto';
+import { TrendHistoryResponseDto } from './dto/trend-history-response.dto';
+import { TrendHistoryDetailsResponseDto } from './dto/trend-history-details-response.dto';
 import { AppUser } from '../user/user.schema';
 import { TrendResponseDto } from './dto/trend-response.dto';
 import { map } from 'rxjs/operators';
@@ -24,38 +24,38 @@ export class TrendsController {
     description: 'Returns current twitter trends near provided location.',
     type: [TrendResponseDto],
   })
-  getTrends(
+  getTrendsByLocation(
     @Query() coords: CoordinatesDto,
     @ReqUser() user?: AppUser,
   ): Observable<TrendResponseDto[]> {
     return this.trendsService
-      .getTrends(coords, user)
+      .getTrendsByLocation(coords, user)
       .pipe(map(trends => plainToClass(TrendResponseDto, trends)));
   }
 
   @ApiOkResponse({
     description: 'Returns trend search history.',
-    type: [TrendsHistoryResponseDto],
+    type: [TrendHistoryResponseDto],
   })
   @Get('/history')
   @Authenticated()
-  getHistory(@ReqUser() user: AppUser): Observable<TrendsHistoryResponseDto[]> {
+  getHistory(@ReqUser() user: AppUser): Observable<TrendHistoryResponseDto[]> {
     return this.trendsService
       .getHistory(user)
-      .pipe(map(trends => plainToClass(TrendsHistoryResponseDto, trends)));
+      .pipe(map(trends => plainToClass(TrendHistoryResponseDto, trends)));
   }
 
   @ApiOkResponse({
     description: 'Returns trend search history details.',
-    type: TrendsHistoryDetailsResponseDto,
+    type: TrendHistoryDetailsResponseDto,
   })
   @Get('/history/:id')
   @Authenticated()
   async getHistoryById(
     @Param() { id }: MongoIdParams,
     @ReqUser() user: AppUser,
-  ): Promise<TrendsHistoryDetailsResponseDto> {
+  ): Promise<TrendHistoryDetailsResponseDto> {
     const historyDetails = await this.trendsService.getHistoryById(id, user);
-    return plainToClass(TrendsHistoryDetailsResponseDto, historyDetails);
+    return plainToClass(TrendHistoryDetailsResponseDto, historyDetails);
   }
 }

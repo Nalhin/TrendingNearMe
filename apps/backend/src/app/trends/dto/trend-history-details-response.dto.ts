@@ -4,7 +4,7 @@ import { TrendResponseDto } from './trend-response.dto';
 import { CoordinatesDto } from './coordinates.dto';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class TrendsHistoryDetailsResponseDto {
+export class TrendHistoryDetailsResponseDto {
   @MongoId()
   @Expose()
   readonly _id: string;
@@ -19,6 +19,6 @@ export class TrendsHistoryDetailsResponseDto {
 
   @Expose()
   @Type(() => TrendResponseDto)
-  @ApiProperty({ type: CoordinatesDto })
+  @ApiProperty({ type: TrendResponseDto })
   readonly trends: TrendResponseDto[];
 }

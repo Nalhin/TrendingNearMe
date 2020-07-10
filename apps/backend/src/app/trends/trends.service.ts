@@ -17,18 +17,18 @@ export class TrendsService {
     private readonly trendsModel: Model<Trend>,
   ) {}
 
-  public getTrends(
+  public getTrendsByLocation(
     coordinates: CoordinatesDto,
     user?: AppUser,
   ): Observable<TwitterTrend[]> {
     return this.twitterService.getTrendsForPosition(coordinates).pipe(
       tap(trends => {
         if (user) {
-          new this.trendsModel({
+          this.trendsModel.create({
             trends,
             coordinates,
             user,
-          }).save();
+          });
         }
       }),
     );
