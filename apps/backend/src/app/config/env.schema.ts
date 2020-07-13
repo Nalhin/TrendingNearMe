@@ -19,5 +19,9 @@ export const envSchema = Joi.object({
     then: Joi.required(),
     otherwise: Joi.optional().default('7 days'),
   }),
-  TWITTER_API_KEY: Joi.string().required(),
+  TWITTER_API_KEY: Joi.string().when('NODE_ENV', {
+    is: 'production',
+    then: Joi.required(),
+    otherwise: Joi.optional(),
+  }),
 });
