@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
   mongo:
-    image: mongo
-    container_name: mongo_trends
+    image: mongo:4.2
+    container_name: trends_db
     restart: always
     ports:
       - "27017:27017"
