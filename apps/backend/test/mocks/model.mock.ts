@@ -8,5 +8,6 @@ export function mockModelFactory(mock?: any) {
     create: jest.fn(),
     remove: jest.fn(),
     exec: jest.fn(),
+    findById: jest.fn(),
   };
 }
