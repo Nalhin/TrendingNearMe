@@ -18,19 +18,17 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./frontend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
       - name: Run lint
-        run: npm run lint
-        working-directory: ./frontend
+        run: npm run nx lint frontend
         env:
           CI: true
 
-  frontend-tests:
+  frontend-unit-tests:
     name: Frontend unit tests
     runs-on: ubuntu-latest
     steps:
@@ -44,20 +42,67 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./frontend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
       - name: Run tests
-        run: npm run test:cov
-        working-directory: ./frontend
+        run: npm run nx test frontend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:
           CI: true
 
+  frontend-e2e-lint:
+    name: Frontend E2E lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run nx lint frontend-e2e
+        env:
+          CI: true
+
+  frontend-e2e-tests:
+    name: Frontend E2E tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run nx e2e frontend-e2e --code-coverage
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        env:
+          CI: true
 
   backend-lint:
     name: Backend lint
@@ -73,19 +118,17 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./backend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./backend
       - name: Run lint
-        run: npm run lint
-        working-directory: ./backend
+        run: npm run nx lint backend
         env:
           CI: true
 
-  backend-tests:
+  backend-unit-tests:
     name: Backend unit tests
     runs-on: ubuntu-latest
     steps:
@@ -99,17 +142,69 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./backend/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm install
-        working-directory: ./backend
       - name: Run tests
-        run: npm run test:cov
-        working-directory: ./backend
+        run: npm run nx test backend --code-coverage
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         env:
           CI: true
 
+  backend-e2e-lint:
+    name: Backend E2E lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Restore cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install dependencies
+      run: npm install
+    - name: Run lint
+      run: npm run nx lint backend-e2e
+      env:
+        CI: true
+
+  backend-e2e-tests:
+    name: Backend E2E tests
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      DB_USER: ${{secrets.DB_USER}}
+      DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+      DB_NAME: ${{secrets.DB_NAME}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run nx e2e backend-e2e --code-coverage
+        env:
+          CI: true
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
