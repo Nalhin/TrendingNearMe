@@ -7,7 +7,7 @@ export const envSchema = Joi.object({
   PORT: Joi.number().default(8000),
   DB_USER: Joi.string().required(),
   DB_PASSWORD: Joi.string().required(),
-  DB_PORT: Joi.number().default(5432),
+  DB_PORT: Joi.number().default(27017),
   DB_NAME: Joi.string().required(),
   JWT_SECRET: Joi.string().when('NODE_ENV', {
     is: 'production',
