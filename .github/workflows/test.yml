@@ -56,27 +56,27 @@ jobs:
 
   frontend-e2e-lint:
     name: Frontend E2E lint
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Setup Node
-          uses: actions/setup-node@v1
-          with:
-            node-version: '12.x'
-        - name: Restore cache
-          uses: actions/cache@v1
-          with:
-            path: ~/.npm
-            key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
-            restore-keys: |
-              ${{ runner.os }}-node-
-        - name: Install dependencies
-          run: npm install
-        - name: Run lint
-          run: npm run nx lint frontend-e2e
-          env:
-            CI: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run nx lint frontend-e2e
+        env:
+          CI: true
 
   frontend-e2e-tests:
     name: Frontend E2E tests
@@ -154,29 +154,29 @@ jobs:
         env:
           CI: true
 
-    backend-e2e-lint:
-      name: Backend E2E lint
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - name: Restore cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm install
-      - name: Run lint
-        run: npm run nx lint backend-e2e
-        env:
-          CI: true
+  backend-e2e-lint:
+    name: Backend E2E lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Restore cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install dependencies
+      run: npm install
+    - name: Run lint
+      run: npm run nx lint backend-e2e
+      env:
+        CI: true
 
   backend-e2e-tests:
     name: Backend E2E tests
