@@ -57,6 +57,30 @@
         }
       }
     },
+    "backend-e2e": {
+      "root": "apps/backend",
+      "sourceRoot": "apps/backend-e2e/src",
+      "projectType": "application",
+      "prefix": "backend-e2e",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/backend-e2e/jest.config.js",
+            "tsConfig": "apps/backend-e2e/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["apps/backend-e2e/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/backend-e2e/**/*"]
+          }
+        }
+      }
+    },
     "frontend": {
       "root": "apps/frontend",
       "sourceRoot": "apps/frontend/src",
