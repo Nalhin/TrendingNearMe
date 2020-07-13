@@ -41,14 +41,14 @@ const Register = () => {
   return (
     <StyledCard>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <TextField name="username" inputRef={register} label="Username"/>
+        <TextField name="username" inputRef={register} label="Username" />
         <TextField
           name="password"
           inputRef={register}
           label="Password"
           type="password"
         />
-        <TextField name="email" inputRef={register} label="Email"/>
+        <TextField name="email" inputRef={register} label="Email" />
         <Button type="submit">Login</Button>
       </StyledForm>
     </StyledCard>

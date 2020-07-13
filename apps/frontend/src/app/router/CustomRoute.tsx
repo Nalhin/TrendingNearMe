@@ -4,7 +4,6 @@ import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { AuthValidator } from './routes';
 import { useUser } from '../hooks/useUser';
 
-
 interface CustomRouteProps extends RouteProps {
   redirectTo?: string;
   authValidator?: AuthValidator;

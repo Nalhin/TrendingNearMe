@@ -8,7 +8,7 @@ import { LeafletMouseEvent } from 'leaflet';
 interface Props {
   markers?: JSX.Element | JSX.Element[];
   position: CoordinatesDto;
-  onClick?: (event:LeafletMouseEvent) => void;
+  onClick?: (event: LeafletMouseEvent) => void;
 }
 
 const Map: React.FC<Props> = ({ markers = [], position, onClick }) => {

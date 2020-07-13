@@ -7,7 +7,6 @@ import styled from '@emotion/styled';
 import { useUser } from '../hooks/useUser';
 import { fetchLoginUser } from '../api/authApi';
 
-
 const StyledCard = styled(Card)`
   max-width: 400px;
   margin: 0 auto;
@@ -41,7 +40,7 @@ const Login = () => {
   return (
     <StyledCard>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <TextField name="username" inputRef={register} label="Username"/>
+        <TextField name="username" inputRef={register} label="Username" />
         <TextField
           name="password"
           inputRef={register}

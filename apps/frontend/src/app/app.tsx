@@ -6,7 +6,6 @@ import { css, Global } from '@emotion/core';
 import { UserProvider } from './hooks/useUser';
 import MainLayout from './layout/MainLayout';
 
-
 const App = () => {
   return (
     <div>

@@ -1,8 +1,7 @@
 import { UserResponseDto } from '../Api';
 
 export abstract class BaseUser {
-  protected constructor(public readonly user: UserResponseDto) {
-  }
+  protected constructor(public readonly user: UserResponseDto) {}
 
   abstract get isAuthenticated(): boolean;
 }

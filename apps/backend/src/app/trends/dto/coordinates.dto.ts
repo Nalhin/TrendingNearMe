@@ -4,11 +4,11 @@ import { Expose, Transform } from 'class-transformer';
 export class CoordinatesDto {
   @Expose()
   @IsLatitude()
-  @Transform(value => Number(value))
+  @Transform((value) => Number(value))
   readonly lat: number;
 
   @Expose()
   @IsLongitude()
-  @Transform(value => Number(value))
+  @Transform((value) => Number(value))
   readonly lng: number;
 }

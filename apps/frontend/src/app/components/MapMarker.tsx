@@ -5,22 +5,29 @@ import { CoordinatesDto } from '../Api';
 
 interface Props {
   onPopupClose?: () => void;
-  onPopupOpen?: (id: string) => void
+  onPopupOpen?: (id: string) => void;
   position: CoordinatesDto;
-  id: string
+  id: string;
 }
 
-const MapMarker: React.FC<Props> = ({ children, id, position, onPopupClose, onPopupOpen }) => {
+const MapMarker: React.FC<Props> = ({
+  children,
+  id,
+  position,
+  onPopupClose,
+  onPopupOpen,
+}) => {
   const onPopupOpenFn = () => {
     if (onPopupOpen) {
       onPopupOpen(id);
     }
   };
 
-
   return (
     <Marker position={position}>
-      <Popup onOpen={onPopupOpenFn} onClose={onPopupClose}>{children}</Popup>
+      <Popup onOpen={onPopupOpenFn} onClose={onPopupClose}>
+        {children}
+      </Popup>
     </Marker>
   );
 };

@@ -4,8 +4,6 @@ import { Switch } from 'react-router-dom';
 import CustomRoute from './CustomRoute';
 import { routes } from './routes';
 
-
-
 const RouteView: React.FC = () => {
   return (
     <React.Suspense fallback={<div>Loading</div>}>

@@ -49,5 +49,4 @@ import { TrendsModule } from './trends/trends.module';
     },
   ],
 })
-export class AppModule {
-}
+export class AppModule {}

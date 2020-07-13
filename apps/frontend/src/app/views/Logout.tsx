@@ -1,7 +1,6 @@
 import React from 'react';
 import { useUser } from '../hooks/useUser';
 
-
 const Logout: React.FC = () => {
   const { logoutUser } = useUser();
 
@@ -9,11 +8,7 @@ const Logout: React.FC = () => {
     logoutUser();
   }, []);
 
-  return (
-    <h1>
-      You have been logged off
-    </h1>
-  );
+  return <h1>You have been logged off</h1>;
 };
 
 export default Logout;

@@ -16,8 +16,7 @@ import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 @ApiTags('trends')
 @Controller('trends')
 export class TrendsController {
-  constructor(private readonly trendsService: TrendsService) {
-  }
+  constructor(private readonly trendsService: TrendsService) {}
 
   @Get('/location')
   @ApiCreatedResponse({
@@ -30,7 +29,7 @@ export class TrendsController {
   ): Observable<TrendResponseDto[]> {
     return this.trendsService
       .getTrendsByLocation(coords, user)
-      .pipe(map(trends => plainToClass(TrendResponseDto, trends)));
+      .pipe(map((trends) => plainToClass(TrendResponseDto, trends)));
   }
 
   @ApiOkResponse({
@@ -42,7 +41,7 @@ export class TrendsController {
   getHistory(@ReqUser() user: AppUser): Observable<TrendHistoryResponseDto[]> {
     return this.trendsService
       .getHistory(user)
-      .pipe(map(trends => plainToClass(TrendHistoryResponseDto, trends)));
+      .pipe(map((trends) => plainToClass(TrendHistoryResponseDto, trends)));
   }
 
   @ApiOkResponse({

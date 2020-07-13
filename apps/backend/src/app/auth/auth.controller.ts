@@ -20,7 +20,6 @@ export class AuthController {
     return this.authService.login(loginUserDto);
   }
 
-
   @ApiCreatedResponse({
     description: 'Registers account with provided data.',
     type: AuthUserResponseDto,

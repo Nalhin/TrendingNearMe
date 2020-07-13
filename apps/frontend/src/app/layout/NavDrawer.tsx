@@ -22,7 +22,6 @@ import styled from '@emotion/styled';
 import { User } from '../models/User';
 import { useUser } from '../hooks/useUser';
 
-
 interface DrawerItem {
   text: string;
   icon: React.ReactElement;
@@ -33,30 +32,30 @@ interface DrawerItem {
 const drawerItems: DrawerItem[] = [
   {
     text: 'Map',
-    icon: <Public/>,
+    icon: <Public />,
     to: '/',
   },
   {
     text: 'Login',
-    icon: <ExitToApp/>,
+    icon: <ExitToApp />,
     to: '/login',
     hide: (user) => user.isAuthenticated,
   },
   {
     text: 'Sign up',
-    icon: <PersonAdd/>,
+    icon: <PersonAdd />,
     to: '/sign-up',
     hide: (user) => user.isAuthenticated,
   },
   {
     text: 'Personal history',
-    icon: <History/>,
+    icon: <History />,
     to: '/personal-history',
     hide: (user) => !user.isAuthenticated,
   },
   {
     text: 'Logout',
-    icon: <MeetingRoom/>,
+    icon: <MeetingRoom />,
     to: '/logout',
     hide: (user) => !user.isAuthenticated,
   },
@@ -79,10 +78,10 @@ const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
     <Drawer variant="persistent" anchor="left" open={isOpen}>
       <div>
         <IconButton onClick={open}>
-          <ChevronRight/>
+          <ChevronRight />
         </IconButton>
       </div>
-      <Divider/>
+      <Divider />
       <List>
         {drawerItems
           .filter((item) => !item.hide || !item.hide(user))
@@ -90,7 +89,7 @@ const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
             <StyledLink to={{ pathname: item.to }} key={item.text}>
               <ListItem button>
                 <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text}/>
+                <ListItemText primary={item.text} />
               </ListItem>
             </StyledLink>
           ))}

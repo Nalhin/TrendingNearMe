@@ -6,7 +6,6 @@ import { cookies } from '../config/cookiesConfig';
 import { CookieTypes } from '../types/CookieTypes';
 import { fetchMe } from '../api/userApi';
 
-
 interface UserContextProps {
   user: User;
   authenticateUser: (user: AuthUserResponseDto) => void;

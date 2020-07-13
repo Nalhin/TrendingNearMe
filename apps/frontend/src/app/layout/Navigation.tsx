@@ -14,13 +14,13 @@ const Navigation = () => {
     <AppBar position="sticky">
       <Toolbar>
         <IconButton color="inherit" onClick={handleDrawerChange} edge="start">
-          <Menu/>
+          <Menu />
         </IconButton>
         <Typography variant="h6" noWrap>
           Trends near me!
         </Typography>
       </Toolbar>
-      <NavDrawer isOpen={isDrawerOpen} open={handleDrawerChange}/>
+      <NavDrawer isOpen={isDrawerOpen} open={handleDrawerChange} />
     </AppBar>
   );
 };
