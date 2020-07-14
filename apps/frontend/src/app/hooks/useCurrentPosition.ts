@@ -2,9 +2,11 @@ import React from 'react';
 
 import { CoordinatesDto } from '../Api';
 
+const CRACOW_COORDS = { lat: 50.049683, lng: 19.944544 }
+
 export function useCurrentPosition(defaultPosition?: CoordinatesDto) {
   const [position, setPosition] = React.useState<CoordinatesDto>(
-    defaultPosition || ((null as unknown) as CoordinatesDto),
+    defaultPosition || (CRACOW_COORDS),
   );
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {

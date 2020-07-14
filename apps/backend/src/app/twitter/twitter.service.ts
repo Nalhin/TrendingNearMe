@@ -12,13 +12,13 @@ export class TwitterService {
 
   private getClosestLocation({ lat, lng }: CoordinatesDto) {
     return this.httpService
-      .get('trends/closest.json', { params: { lat, long: lng } })
+      .get('/trends/closest.json', { params: { lat, long: lng } })
       .pipe(map((res) => res.data));
   }
 
   private getTrendsNearLocation(locationId: string) {
     return this.httpService
-      .get('trends/place.json', { params: { id: locationId } })
+      .get('/trends/place.json', { params: { id: locationId } })
       .pipe(map((res) => res.data));
   }
 

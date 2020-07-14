@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserController } from './user.controller';
-import { appUserFactory } from '../../../test/fixtures/user.fixture';
+import { UsersController } from './users.controller';
+import { appUserFactory } from '../../../test/fixtures/users.fixture';
 import { UserResponseDto } from './dto/user-response.dto';
 
 describe('User Controller', () => {
-  let controller: UserController;
+  let controller: UsersController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [UserController],
+      controllers: [UsersController],
     }).compile();
 
-    controller = module.get<UserController>(UserController);
+    controller = module.get<UsersController>(UsersController);
   });
 
   it('should be defined', () => {
@@ -21,7 +21,7 @@ describe('User Controller', () => {
   describe('me', () => {
     const appUser = appUserFactory.buildOne();
 
-    it('should return user as JSON', () => {
+    it('should return users as JSON', () => {
       appUser.toJSON = jest.fn().mockReturnValue(appUser);
 
       const result = controller.me(appUser);

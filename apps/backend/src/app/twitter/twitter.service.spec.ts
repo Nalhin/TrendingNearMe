@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { coordinatesDtoFactory } from '../../../test/fixtures/trends.fixture';
 import { TwitterTrend } from './twitter-trend.model';
+import { twitterClosestResponse, twitterTrendResponse } from '../../../test/fixtures/twitter-response.fixture';
 
 describe('TwitterService', () => {
   let service: TwitterService;
@@ -30,30 +31,15 @@ describe('TwitterService', () => {
   });
 
   describe('getTrendsForPosition', () => {
-    const woeid = 222;
     const coords = coordinatesDtoFactory.buildOne();
 
     it('should return twitter trends with correct format', (done) => {
       jest
         .spyOn(httpService, 'get')
-        .mockReturnValueOnce(of({ data: [{ woeid }] } as AxiosResponse))
+        .mockReturnValueOnce(of({ data: twitterClosestResponse } as AxiosResponse))
         .mockReturnValueOnce(
           of({
-            data: [
-              {
-                trends: [
-                  {
-                    name: '#BB2020Tvi',
-                    url: 'http://twitter.com/search?q=%23BB2020Tvi',
-                    // eslint-disable-next-line @typescript-eslint/camelcase
-                    promoted_content: null,
-                    query: '%23BB2020Tvi',
-                    // eslint-disable-next-line @typescript-eslint/camelcase
-                    tweet_volume: 188674,
-                  },
-                ],
-              },
-            ],
+            data: twitterTrendResponse
           } as AxiosResponse),
         );
 
@@ -64,7 +50,7 @@ describe('TwitterService', () => {
           params: { lat: coords.lat, long: coords.lng },
         });
         expect(httpService.get).toHaveBeenNthCalledWith(2, expect.any(String), {
-          params: { id: woeid },
+          params: { id: twitterClosestResponse[0].woeid },
         });
         done();
       });

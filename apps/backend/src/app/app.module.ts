@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 import { envSchema } from './config/env.schema';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RequireAuthGuard } from './common/guards/require-auth.guard';
@@ -24,7 +24,7 @@ import { TrendsModule } from './trends/trends.module';
       useClass: MongooseConfigService,
     }),
     AuthModule,
-    UserModule,
+    UsersModule,
     TwitterModule,
     TrendsModule,
   ],

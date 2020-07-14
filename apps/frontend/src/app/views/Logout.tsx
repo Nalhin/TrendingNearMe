@@ -6,7 +6,7 @@ const Logout: React.FC = () => {
 
   React.useEffect(() => {
     logoutUser();
-  }, []);
+  }, [logoutUser]);
 
   return <h1>You have been logged off</h1>;
 };

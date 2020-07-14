@@ -1,8 +1,8 @@
 import React from 'react';
 import { AnonymousUser, AuthenticatedUser, User } from '../models/User';
 import { AuthUserResponseDto } from '../Api';
-import { axios } from '../config/apiConfig';
-import { cookies } from '../config/cookiesConfig';
+import { axios } from '../config/axios.config';
+import { cookies } from '../config/cookies.config';
 import { CookieTypes } from '../types/CookieTypes';
 import { fetchMe } from '../api/userApi';
 
@@ -26,14 +26,12 @@ const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<User>(new AnonymousUser());
 
   const authenticateUser = ({ user, token }: AuthUserResponseDto) => {
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-    cookies.set(CookieTypes.AUTH, token);
+    cookies.setAuthCookie(token);
     setUser(new AuthenticatedUser(user));
   };
 
   const logoutUser = () => {
-    axios.defaults.headers.Authorization = '';
-    cookies.remove(CookieTypes.AUTH);
+    cookies.removeAuthCookie();
     setUser(new AnonymousUser());
   };
 

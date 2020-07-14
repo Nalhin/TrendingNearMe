@@ -1,7 +1,7 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, DocumentDefinition } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { AppUser, User } from '../user/user.schema';
+import { AppUser, User } from '../users/users.schema';
 import { TwitterTrend } from '../twitter/twitter-trend.model';
 import { CoordinatesDto } from './dto/coordinates.dto';
 

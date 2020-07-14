@@ -3,7 +3,7 @@ import { TwitterService } from '../twitter/twitter.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Trend, TrendDocument } from './trends.schema';
-import { AppUser } from '../user/user.schema';
+import { AppUser } from '../users/users.schema';
 import { tap } from 'rxjs/operators';
 import { from, Observable } from 'rxjs';
 import { CoordinatesDto } from './dto/coordinates.dto';
@@ -15,7 +15,8 @@ export class TrendsService {
     private readonly twitterService: TwitterService,
     @InjectModel(Trend.name)
     private readonly trendsModel: Model<Trend>,
-  ) {}
+  ) {
+  }
 
   public getTrendsByLocation(
     coordinates: CoordinatesDto,

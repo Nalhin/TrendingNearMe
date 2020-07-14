@@ -68,7 +68,8 @@
           "options": {
             "jestConfig": "apps/backend-e2e/jest.config.js",
             "tsConfig": "apps/backend-e2e/tsconfig.spec.json",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         },
         "lint": {

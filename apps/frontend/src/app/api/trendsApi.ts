@@ -1,4 +1,4 @@
-import { axios } from '../config/apiConfig';
+import { axios } from '../config/axios.config';
 import {
   CoordinatesDto,
   TrendResponseDto,

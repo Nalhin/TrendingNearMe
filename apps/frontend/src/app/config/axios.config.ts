@@ -1,10 +1,9 @@
 import axio from 'axios';
-
-import { cookies } from './cookiesConfig';
 import { CookieTypes } from '../types/CookieTypes';
+import Cookies from 'universal-cookie';
 
 const axiosOptionsFactory = () => {
-  const auth = cookies.get(CookieTypes.AUTH);
+  const auth = new Cookies().get(CookieTypes.AUTH);
 
   const options = {
     baseURL: process.env.API_URI ?? 'http://localhost:8000',

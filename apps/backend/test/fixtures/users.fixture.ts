@@ -1,11 +1,11 @@
 import { Factory } from 'factory.io';
-import { AppUser } from '../../src/app/user/user.schema';
+import { AppUser, UserDocument } from '../../src/app/users/users.schema';
 import * as faker from 'faker';
 import * as mongoose from 'mongoose';
 import { RegisterUserDto } from '../../src/app/auth/dto/register-user.dto';
 import { LoginUserDto } from '../../src/app/auth/dto/login-user.dto';
 import { AuthUserResponseDto } from '../../src/app/auth/dto/auth-user-response.dto';
-import { UserResponseDto } from '../../src/app/user/dto/user-response.dto';
+import { UserResponseDto } from '../../src/app/users/dto/user-response.dto';
 
 export const loginUserDtoFactory = new Factory(LoginUserDto)
   .props({
@@ -27,6 +27,8 @@ export const appUserFactory = new Factory<AppUser>()
   })
   .mixins([registerUserDtoFactory])
   .done();
+
+export const userDocumentFactory = new Factory<UserDocument>().mixins([appUserFactory]).done();
 
 export const userResponseDtoFactory = new Factory(UserResponseDto)
   .props({

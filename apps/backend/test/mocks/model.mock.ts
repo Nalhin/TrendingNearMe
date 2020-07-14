@@ -1,7 +1,7 @@
-export function mockModelFactory(mock?: any) {
+export function mockModelFactory() {
   return {
-    new: jest.fn().mockResolvedValue(mock),
-    constructor: jest.fn().mockResolvedValue(mock),
+    new: jest.fn().mockResolvedValue(null),
+    constructor: jest.fn().mockResolvedValue(null),
     find: jest.fn(),
     findOne: jest.fn(),
     update: jest.fn(),

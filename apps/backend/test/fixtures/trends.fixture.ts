@@ -4,7 +4,7 @@ import { CoordinatesDto } from '../../src/app/trends/dto/coordinates.dto';
 import { TrendResponseDto } from '../../src/app/trends/dto/trend-response.dto';
 import * as mongoose from 'mongoose';
 import { TrendDocument } from '../../src/app/trends/trends.schema';
-import { appUserFactory } from './user.fixture';
+import { appUserFactory } from './users.fixture';
 
 export const coordinatesDtoFactory = new Factory(CoordinatesDto)
   .props({
@@ -29,6 +29,6 @@ export const trendDocumentFactory = new Factory<TrendDocument>()
     coordinates: coordinatesDtoFactory.buildOne,
     user: appUserFactory.buildOne,
     created: faker.date.recent,
-    _id: () => mongoose.Types.ObjectId.toString(),
+    _id: mongoose.Types.ObjectId,
   })
   .done();

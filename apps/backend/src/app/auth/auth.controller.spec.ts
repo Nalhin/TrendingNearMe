@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UserService } from '../user/user.service';
+import { UsersService } from '../users/users.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { User } from '../user/user.schema';
+import { User } from '../users/users.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { mockModelFactory } from '../../../test/mocks/model.mock';
 import {
   authUserFactory,
   loginUserDtoFactory,
   registerUserDtoFactory,
-} from '../../../test/fixtures/user.fixture';
+} from '../../../test/fixtures/users.fixture';
 import { AuthUserResponseDto } from './dto/auth-user-response.dto';
 
 describe('Auth Controller', () => {
@@ -21,7 +21,7 @@ describe('Auth Controller', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [JwtModule.register({ secret: 'test' })],
       providers: [
-        UserService,
+        UsersService,
         AuthService,
         {
           provide: getModelToken(User.name),
@@ -43,7 +43,7 @@ describe('Auth Controller', () => {
     const loginUserDto = loginUserDtoFactory.buildOne();
     const authUser = authUserFactory.buildOne();
 
-    it('should return auth user response', async () => {
+    it('should return auth users response', async () => {
       jest.spyOn(authService, 'login').mockResolvedValueOnce(authUser);
 
       const result = await controller.login(loginUserDto);
@@ -57,7 +57,7 @@ describe('Auth Controller', () => {
     const registerUserDto = registerUserDtoFactory.buildOne();
     const authUser = authUserFactory.buildOne();
 
-    it('should return auth user response', async () => {
+    it('should return auth users response', async () => {
       jest.spyOn(authService, 'register').mockResolvedValueOnce(authUser);
 
       const result = await controller.register(registerUserDto);

@@ -3,6 +3,7 @@ import {
   HttpModuleOptionsFactory,
   Injectable,
 } from '@nestjs/common';
+import { TWITTER_BASE } from '../common/constants/url.constants';
 
 @Injectable()
 export class TwitterHttpConfigService implements HttpModuleOptionsFactory {
@@ -11,7 +12,7 @@ export class TwitterHttpConfigService implements HttpModuleOptionsFactory {
       headers: {
         Authorization: `Bearer ${process.env.TWITTER_API_KEY}`,
       },
-      baseURL: 'https://api.twitter.com/1.1',
+      baseURL: TWITTER_BASE,
     };
   }
 }

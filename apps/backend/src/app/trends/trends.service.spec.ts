@@ -12,7 +12,7 @@ import {
   coordinatesDtoFactory,
   trendDocumentFactory,
 } from '../../../test/fixtures/trends.fixture';
-import { appUserFactory } from '../../../test/fixtures/user.fixture';
+import { appUserFactory } from '../../../test/fixtures/users.fixture';
 import { twitterTrendFactory } from '../../../test/fixtures/twitter.fixture';
 import { of } from 'rxjs';
 
@@ -51,7 +51,7 @@ describe('TrendsService', () => {
     const response = twitterTrendFactory.buildMany(3);
     const location = coordinatesDtoFactory.buildOne();
 
-    it('should return and persist data if user is authenticated', (done) => {
+    it('should return and persist data if users is authenticated', (done) => {
       const user = appUserFactory.buildOne();
       jest.spyOn(model, 'create').mockResolvedValueOnce(null);
       jest
@@ -66,7 +66,7 @@ describe('TrendsService', () => {
       });
     });
 
-    it('should only return data if user is not authenticated', (done) => {
+    it('should only return data if users is not authenticated', (done) => {
       jest.spyOn(model, 'create').mockResolvedValueOnce(null);
       jest
         .spyOn(twitterService, 'getTrendsForPosition')
@@ -101,7 +101,7 @@ describe('TrendsService', () => {
   describe('getHistoryById', () => {
     const response = trendDocumentFactory.buildOne();
 
-    it('should throw error if user id does not match trend id', async () => {
+    it('should throw error if users id does not match trend id', async () => {
       const user = appUserFactory.buildOne();
       jest.spyOn(model, 'findById').mockReturnValueOnce(
         createMock<DocumentQuery<Trend, Trend, unknown>>({

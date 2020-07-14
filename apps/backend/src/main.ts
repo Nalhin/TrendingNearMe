@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Trending near me!')
-    .setDescription('Check out the trending tweets near user location')
+    .setDescription('Check out the trending tweets near users location')
     .setVersion('1.0')
     .addTag('trends')
     .addBearerAuth()

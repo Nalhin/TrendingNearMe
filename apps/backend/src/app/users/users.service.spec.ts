@@ -1,23 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
+import { UsersService } from './users.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { AppUser, User } from './user.schema';
+import { AppUser, User } from './users.schema';
 import {
   registerUserDtoFactory,
   appUserFactory,
-} from '../../../test/fixtures/user.fixture';
+} from '../../../test/fixtures/users.fixture';
 import { mockModelFactory } from '../../../test/mocks/model.mock';
 import { DocumentQuery, Model } from 'mongoose';
 import { createMock } from '@golevelup/nestjs-testing';
 
 describe('UserService', () => {
-  let service: UserService;
+  let service: UsersService;
   let model: Model<AppUser>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        UserService,
+        UsersService,
         {
           provide: getModelToken(User.name),
           useValue: mockModelFactory(),
@@ -25,7 +25,7 @@ describe('UserService', () => {
       ],
     }).compile();
 
-    service = module.get<UserService>(UserService);
+    service = module.get<UsersService>(UsersService);
     model = module.get<Model<AppUser>>(getModelToken(User.name));
   });
 
@@ -37,10 +37,10 @@ describe('UserService', () => {
     expect(service).toBeDefined();
   });
 
-  describe('create user', () => {
+  describe('create users', () => {
     const registerUserDto = registerUserDtoFactory.buildOne();
 
-    it('should save user', async () => {
+    it('should save users', async () => {
       const expectedResult = appUserFactory.buildOne(registerUserDto);
       jest.spyOn(model, 'create').mockResolvedValueOnce(expectedResult);
 
@@ -52,7 +52,7 @@ describe('UserService', () => {
 
   describe('findOneByUsername', () => {
     const user = appUserFactory.buildOne();
-    it('should return user with given username', async () => {
+    it('should return users with given username', async () => {
       jest.spyOn(model, 'findOne').mockReturnValueOnce(
         createMock<DocumentQuery<AppUser, AppUser, unknown>>({
           exec: jest.fn().mockResolvedValueOnce(user),

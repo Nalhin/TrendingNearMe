@@ -1,21 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../../user/user.service';
+import { UsersService } from '../../users/users.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { mockModelFactory } from '../../../../test/mocks/model.mock';
-import { User } from '../../user/user.schema';
+import { User } from '../../users/users.schema';
 import { JwtStrategy } from './jwt.strategy';
 import jwtConfig from '../../config/jwt.config';
-import { appUserFactory } from '../../../../test/fixtures/user.fixture';
+import { appUserFactory } from '../../../../test/fixtures/users.fixture';
 
 describe('Jwt Strategy', () => {
   let strategy: JwtStrategy;
-  let userService: UserService;
+  let userService: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         JwtStrategy,
-        UserService,
+        UsersService,
         {
           provide: getModelToken(User.name),
           useValue: mockModelFactory(),
@@ -28,7 +28,7 @@ describe('Jwt Strategy', () => {
     }).compile();
 
     strategy = module.get<JwtStrategy>(JwtStrategy);
-    userService = module.get<UserService>(UserService);
+    userService = module.get<UsersService>(UsersService);
   });
 
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('Jwt Strategy', () => {
       expect(callback).toBeCalledWith(null, null);
     });
 
-    it('should return auth user response', async () => {
+    it('should return auth users response', async () => {
       const appUser = appUserFactory.buildOne();
       jest
         .spyOn(userService, 'findOneByUsername')

@@ -14,15 +14,15 @@ export class User extends Document {
   email: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UsersSchema = SchemaFactory.createForClass(User);
 
-UserSchema.methods.comparePassword = function (
+UsersSchema.methods.comparePassword = function (
   password: string,
 ): Promise<boolean> {
   return bcrypt.compare(password, this.password);
 };
 
-UserSchema.pre<User>('save', async function (next) {
+UsersSchema.pre<User>('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });

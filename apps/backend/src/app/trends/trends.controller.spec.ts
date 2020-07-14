@@ -14,7 +14,7 @@ import {
 import { twitterTrendFactory } from '../../../test/fixtures/twitter.fixture';
 import { TrendResponseDto } from './dto/trend-response.dto';
 import { TrendHistoryResponseDto } from './dto/trend-history-response.dto';
-import { appUserFactory } from '../../../test/fixtures/user.fixture';
+import { appUserFactory } from '../../../test/fixtures/users.fixture';
 import { TrendHistoryDetailsResponseDto } from './dto/trend-history-details-response.dto';
 
 describe('Trends Controller', () => {

@@ -5,7 +5,7 @@ import { Authenticated } from '../common/decorators/authenticated.decorator';
 import { plainToClass } from 'class-transformer';
 import { TrendHistoryResponseDto } from './dto/trend-history-response.dto';
 import { TrendHistoryDetailsResponseDto } from './dto/trend-history-details-response.dto';
-import { AppUser } from '../user/user.schema';
+import { AppUser } from '../users/users.schema';
 import { TrendResponseDto } from './dto/trend-response.dto';
 import { map } from 'rxjs/operators';
 import { MongoIdParams } from '../common/params/mongo-id.params';

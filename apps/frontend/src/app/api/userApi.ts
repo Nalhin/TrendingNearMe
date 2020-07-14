@@ -1,5 +1,6 @@
-import { axios } from '../config/apiConfig';
+import { axios } from '../config/axios.config';
+import { UserResponseDto } from '../Api';
 
 export function fetchMe() {
-  return axios.get('/users/me');
+  return axios.get<UserResponseDto>('/users/me');
 }

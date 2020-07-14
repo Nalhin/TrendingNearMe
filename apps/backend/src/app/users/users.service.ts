@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { User, AppUser } from './user.schema';
+import { User, AppUser } from './users.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RegisterUserDto } from '../auth/dto/register-user.dto';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<AppUser>,
