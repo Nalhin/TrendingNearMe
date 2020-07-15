@@ -28,7 +28,9 @@ export const appUserFactory = new Factory<AppUser>()
   .mixins([registerUserDtoFactory])
   .done();
 
-export const userDocumentFactory = new Factory<UserDocument>().mixins([appUserFactory]).done();
+export const userDocumentFactory = new Factory<UserDocument>()
+  .mixins([appUserFactory])
+  .done();
 
 export const userResponseDtoFactory = new Factory(UserResponseDto)
   .props({
@@ -38,7 +40,7 @@ export const userResponseDtoFactory = new Factory(UserResponseDto)
   })
   .done();
 
-export const authUserFactory = new Factory(AuthUserResponseDto)
+export const authUserResponseDtoFactory = new Factory(AuthUserResponseDto)
   .props({
     user: userResponseDtoFactory.buildOne,
     token: faker.random.word,

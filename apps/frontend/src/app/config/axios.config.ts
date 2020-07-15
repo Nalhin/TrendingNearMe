@@ -1,6 +1,7 @@
 import axio from 'axios';
-import { CookieTypes } from '../types/CookieTypes';
 import Cookies from 'universal-cookie';
+
+import { CookieTypes } from '../types/cookie.types';
 
 const axiosOptionsFactory = () => {
   const auth = new Cookies().get(CookieTypes.AUTH);

@@ -19,6 +19,6 @@ export class TrendHistoryDetailsResponseDto {
 
   @Expose()
   @Type(() => TrendResponseDto)
-  @ApiProperty({ type: TrendResponseDto })
+  @ApiProperty({ type: [TrendResponseDto] })
   readonly trends: TrendResponseDto[];
 }

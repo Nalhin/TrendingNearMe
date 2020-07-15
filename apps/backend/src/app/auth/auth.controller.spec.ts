@@ -7,7 +7,7 @@ import { User } from '../users/users.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { mockModelFactory } from '../../../test/mocks/model.mock';
 import {
-  authUserFactory,
+  authUserResponseDtoFactory,
   loginUserDtoFactory,
   registerUserDtoFactory,
 } from '../../../test/fixtures/users.fixture';
@@ -41,7 +41,7 @@ describe('Auth Controller', () => {
 
   describe('login', () => {
     const loginUserDto = loginUserDtoFactory.buildOne();
-    const authUser = authUserFactory.buildOne();
+    const authUser = authUserResponseDtoFactory.buildOne();
 
     it('should return auth users response', async () => {
       jest.spyOn(authService, 'login').mockResolvedValueOnce(authUser);
@@ -55,7 +55,7 @@ describe('Auth Controller', () => {
 
   describe('register', () => {
     const registerUserDto = registerUserDtoFactory.buildOne();
-    const authUser = authUserFactory.buildOne();
+    const authUser = authUserResponseDtoFactory.buildOne();
 
     it('should return auth users response', async () => {
       jest.spyOn(authService, 'register').mockResolvedValueOnce(authUser);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-
-import { CoordinatesDto } from '../Api';
 import { LeafletMouseEvent } from 'leaflet';
+
+import { CoordinatesDto } from '@trends/data';
 
 interface Props {
   markers?: JSX.Element | JSX.Element[];

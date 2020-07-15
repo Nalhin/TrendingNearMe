@@ -33,11 +33,11 @@ export interface RegisterUserDto {
 }
 
 export interface TrendResponseDto {
-  promotedContent: boolean | null;
-  tweetVolume: number | null;
   name: string;
   url: string;
+  promotedContent: boolean | null;
   query: string;
+  tweetVolume: number | null;
 }
 
 export interface CoordinatesDto {
@@ -46,14 +46,14 @@ export interface CoordinatesDto {
 }
 
 export interface TrendHistoryResponseDto {
-  _id: string;
   coordinates: CoordinatesDto;
+  _id: string;
   created: string;
 }
 
 export interface TrendHistoryDetailsResponseDto {
-  _id: string;
   coordinates: CoordinatesDto;
-  created: string;
   trends: TrendResponseDto[];
+  _id: string;
+  created: string;
 }

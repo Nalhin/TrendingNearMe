@@ -1,4 +1,9 @@
-import { AuthUserResponseDto, LoginUserDto, RegisterUserDto } from '../Api';
+import {
+  AuthUserResponseDto,
+  LoginUserDto,
+  RegisterUserDto,
+} from '@trends/data';
+
 import { axios } from '../config/axios.config';
 
 export function fetchLoginUser(loginUserDto: LoginUserDto) {

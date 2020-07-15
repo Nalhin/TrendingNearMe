@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import styled from '@emotion/styled';
 
-import { TrendResponseDto } from '../Api';
+import { TrendResponseDto } from '@trends/data';
 
 const StyledCard = styled(Card)`
   margin: 8px;

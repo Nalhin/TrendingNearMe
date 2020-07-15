@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { User } from '../models/User';
+import { UserModel } from '@trends/data';
 
-export type AuthValidator = (user: User) => boolean;
+export type AuthValidator = (user: UserModel) => boolean;
 
-const authValidator = (user: User) => user.isAuthenticated;
-const noAuthValidator = (user: User) => !user.isAuthenticated;
+const authValidator = (user: UserModel) => user.isAuthenticated;
+const noAuthValidator = (user: UserModel) => !user.isAuthenticated;
 
 interface Route {
   path: string;
@@ -20,26 +20,28 @@ interface Route {
 export const routes: Route[] = [
   {
     path: '/login',
-    component: React.lazy(() => import('../views/Login')),
+    component: React.lazy(() => import('../views/login/Login')),
     authValidator: noAuthValidator,
   },
   {
     path: '/sign-up',
-    component: React.lazy(() => import('../views/Register')),
+    component: React.lazy(() => import('../views/register/Register')),
     authValidator: noAuthValidator,
   },
   {
     path: '/personal-history',
-    component: React.lazy(() => import('../views/PersonalHistory')),
+    component: React.lazy(() =>
+      import('../views/personal-history/PersonalHistory'),
+    ),
     authValidator: authValidator,
   },
   {
     path: '/logout',
-    component: React.lazy(() => import('../views/Logout')),
+    component: React.lazy(() => import('../views/logout/Logout')),
   },
   {
     path: '',
     exact: true,
-    component: React.lazy(() => import('../views/Home')),
+    component: React.lazy(() => import('../views/home/Home')),
   },
 ];

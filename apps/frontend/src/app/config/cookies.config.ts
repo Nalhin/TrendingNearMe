@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
+
 import { axios } from './axios.config';
-import { CookieTypes } from '../types/CookieTypes';
+import { CookieTypes } from '../types/cookie.types';
 
 class AppCookies extends Cookies {
   setAuthCookie(token: string) {
@@ -13,7 +14,6 @@ class AppCookies extends Cookies {
     this.remove(CookieTypes.AUTH);
   }
 }
-
 
 const cookies = new AppCookies();
 

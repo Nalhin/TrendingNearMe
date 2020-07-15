@@ -5,12 +5,12 @@ import styled from '@emotion/styled';
 import {
   fetchGetTrendDetailsId,
   fetchGetTrendsHistory,
-} from '../api/trendsApi';
-import { useCurrentPosition } from '../hooks/useCurrentPosition';
-import MapMarker from '../components/MapMarker';
-import { toRelativeDate } from '../utils/relativeDate';
-import Map from '../components/Map';
-import Trend from '../components/Trend';
+} from '../../api/trends.api';
+import { useCurrentPosition } from '../../hooks/useCurrentPosition';
+import MapMarker from '../../components/MapMarker';
+import { toRelativeDate } from '../../utils/relative-date';
+import Map from '../../components/Map';
+import Trend from '../../components/Trend';
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -32,9 +32,10 @@ const PersonalHistory: React.FC = () => {
   const { data: trendHistory } = useQuery(
     'personal-history',
     fetchGetTrendsHistory,
+    { retry: false },
   );
   const { data: trendDetails } = useQuery(
-    ['marker', selected],
+    [selected, 'marker'],
     fetchGetTrendDetailsId,
     { enabled: selected },
   );

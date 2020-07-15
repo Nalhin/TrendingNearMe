@@ -1,4 +1,4 @@
-import { UserResponseDto } from '../Api';
+import { UserResponseDto } from '@trends/data';
 
 export abstract class BaseUser {
   protected constructor(public readonly user: UserResponseDto) {}
@@ -26,4 +26,4 @@ export class AuthenticatedUser extends BaseUser {
   }
 }
 
-export type User = AnonymousUser | AuthenticatedUser;
+export type UserModel = AnonymousUser | AuthenticatedUser;

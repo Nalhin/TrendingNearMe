@@ -1,13 +1,13 @@
 import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
-import { CoordinatesDto } from '../Api';
+import { CoordinatesDto } from '@trends/data';
 
 interface Props {
   onPopupClose?: () => void;
   onPopupOpen?: (id: string) => void;
   position: CoordinatesDto;
-  id: string;
+  id?: string;
 }
 
 const MapMarker: React.FC<Props> = ({

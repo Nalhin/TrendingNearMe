@@ -4,8 +4,11 @@ import { useMutation } from 'react-query';
 import { Button, Card, TextField } from '@material-ui/core';
 import styled from '@emotion/styled';
 
-import { useUser } from '../hooks/useUser';
-import { fetchRegisterUser } from '../api/authApi';
+import { LoginUserDto } from '@trends/data';
+
+import { useUser } from '../../hooks/useUser';
+import { fetchLoginUser } from '../../api/auth.api';
+import AlertSnackbar from '../../components/AlertSnackbar';
 
 const StyledCard = styled(Card)`
   max-width: 400px;
@@ -18,24 +21,19 @@ const StyledForm = styled.form`
   padding: 12px;
 `;
 
-interface RegisterForm {
-  username: string;
-  password: string;
-  email: string;
-}
+type LoginForm = LoginUserDto;
 
-const Register = () => {
-  const { register, handleSubmit } = useForm<RegisterForm>();
-  const { authenticateUser, logoutUser } = useUser();
-  const [mutate] = useMutation(fetchRegisterUser);
-
-  const onSubmit = async (data: RegisterForm) => {
-    try {
-      const response = await mutate(data);
+const Login = () => {
+  const { register, handleSubmit } = useForm<LoginForm>();
+  const { authenticateUser } = useUser();
+  const [mutate, { isError, error, reset }] = useMutation(fetchLoginUser, {
+    onSuccess: (response) => {
       authenticateUser(response.data);
-    } catch (e) {
-      logoutUser();
-    }
+    },
+  });
+
+  const onSubmit = async (data: LoginForm) => {
+    await mutate(data);
   };
 
   return (
@@ -48,11 +46,11 @@ const Register = () => {
           label="Password"
           type="password"
         />
-        <TextField name="email" inputRef={register} label="Email" />
         <Button type="submit">Login</Button>
       </StyledForm>
+      <AlertSnackbar open={isError} message={error?.message} onClose={reset} />
     </StyledCard>
   );
 };
 
-export default Register;
+export default Login;

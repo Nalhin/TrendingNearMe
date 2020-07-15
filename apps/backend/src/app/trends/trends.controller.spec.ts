@@ -74,7 +74,7 @@ describe('Trends Controller', () => {
       controller.getHistory(user).subscribe((res) => {
         expect(res[0]).toBeInstanceOf(TrendHistoryResponseDto);
         expect(res.length).toBe(response.length);
-        expect(res[0]._id).toBe(response[0]._id);
+        expect(res[0]._id).toStrictEqual(response[0]._id);
         done();
       });
     });

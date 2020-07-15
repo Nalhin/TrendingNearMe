@@ -1,13 +1,14 @@
 import React from 'react';
-import { AnonymousUser, AuthenticatedUser, User } from '../models/User';
-import { AuthUserResponseDto } from '../Api';
-import { axios } from '../config/axios.config';
-import { cookies } from '../config/cookies.config';
-import { CookieTypes } from '../types/CookieTypes';
-import { fetchMe } from '../api/userApi';
 
-interface UserContextProps {
-  user: User;
+import { AnonymousUser, AuthenticatedUser, UserModel } from '@trends/data';
+import { AuthUserResponseDto } from '@trends/data';
+
+import { cookies } from '../config/cookies.config';
+import { CookieTypes } from '../types/cookie.types';
+import { fetchMe } from '../api/user.api';
+
+export interface UserContextProps {
+  user: UserModel;
   authenticateUser: (user: AuthUserResponseDto) => void;
   logoutUser: () => void;
 }
@@ -22,18 +23,28 @@ const useUser = () => {
   return context;
 };
 
-const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = React.useState<User>(new AnonymousUser());
+interface Props {
+  defaultUser?: AnonymousUser | AuthenticatedUser;
+}
 
-  const authenticateUser = ({ user, token }: AuthUserResponseDto) => {
-    cookies.setAuthCookie(token);
-    setUser(new AuthenticatedUser(user));
-  };
+const UserProvider: React.FC<Props> = ({
+  children,
+  defaultUser = new AnonymousUser(),
+} = {}) => {
+  const [user, setUser] = React.useState<UserModel>(defaultUser);
 
-  const logoutUser = () => {
+  const authenticateUser = React.useCallback(
+    ({ user, token }: AuthUserResponseDto) => {
+      cookies.setAuthCookie(token);
+      setUser(new AuthenticatedUser(user));
+    },
+    [],
+  );
+
+  const logoutUser = React.useCallback(() => {
     cookies.removeAuthCookie();
     setUser(new AnonymousUser());
-  };
+  }, []);
 
   React.useEffect(() => {
     (async () => {

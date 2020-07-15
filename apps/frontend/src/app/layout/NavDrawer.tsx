@@ -19,14 +19,15 @@ import {
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-import { User } from '../models/User';
+import { UserModel } from '@trends/data';
+
 import { useUser } from '../hooks/useUser';
 
 interface DrawerItem {
   text: string;
   icon: React.ReactElement;
   to: string;
-  hide?: (user: User) => boolean;
+  hide?: (user: UserModel) => boolean;
 }
 
 const drawerItems: DrawerItem[] = [
@@ -66,6 +67,12 @@ const StyledLink = styled(Link)`
   text-decoration: inherit;
 `;
 
+const StyledDrawer = styled(Drawer)`
+  .MuiDrawer-paper {
+    min-width: 180px;
+  }
+`;
+
 interface Props {
   isOpen: boolean;
   open: () => void;
@@ -75,7 +82,7 @@ const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
   const { user } = useUser();
 
   return (
-    <Drawer variant="persistent" anchor="left" open={isOpen}>
+    <StyledDrawer variant="persistent" anchor="left" open={isOpen}>
       <div>
         <IconButton onClick={open}>
           <ChevronRight />
@@ -94,7 +101,7 @@ const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
             </StyledLink>
           ))}
       </List>
-    </Drawer>
+    </StyledDrawer>
   );
 };
 
