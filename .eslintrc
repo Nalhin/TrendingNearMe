@@ -35,7 +35,8 @@
           {
             "sourceTag": "scope:backend",
             "onlyDependOnLibsWithTags": [
-              "scope:backend"
+              "scope:backend",
+              "scope:shared"
             ]
           },
           {

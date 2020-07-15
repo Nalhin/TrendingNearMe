@@ -11,4 +11,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../coverage/apps/frontend',
   setupFilesAfterEnv: ['./test/setup/jest.setup.ts'],
+  collectCoverageFrom: [
+    'src/**', '!test/**',
+  ],
 };

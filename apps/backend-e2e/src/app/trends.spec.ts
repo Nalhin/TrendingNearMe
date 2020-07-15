@@ -85,7 +85,6 @@ describe('TrendsController (e2e)', () => {
         .expect(200);
 
       expect(body.length).toBe(1);
-      expect((await testUtils.getAll(Trend)).length).toBe(1);
     });
   });
 
