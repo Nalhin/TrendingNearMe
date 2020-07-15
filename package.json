@@ -26,6 +26,11 @@
     "help": "nx help",
     "gen-typings": "npx swagger-typescript-api -p http://localhost:8000/api-json -o ./libs/data/src/lib/interfaces -n api.interface.ts --no-client"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run affected:lint"
+    }
+  },
   "private": true,
   "dependencies": {
     "@emotion/core": "10.0.28",

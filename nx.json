@@ -30,7 +30,7 @@
       "implicitDependencies": ["backend"]
     },
     "frontend": {
-      "tags": []
+      "tags": ["scope:frontend"]
     },
     "frontend-e2e": {
       "tags": [],
