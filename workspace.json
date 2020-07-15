@@ -44,7 +44,10 @@
               "apps/backend/tsconfig.app.json",
               "apps/backend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/backend/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/backend/**/*"
+            ]
           }
         },
         "test": {
@@ -76,8 +79,13 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/backend-e2e/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!apps/backend-e2e/**/*"]
+            "tsConfig": [
+              "apps/backend-e2e/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/backend-e2e/**/*"
+            ]
           }
         }
       }
@@ -148,7 +156,10 @@
               "apps/frontend/tsconfig.app.json",
               "apps/frontend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/frontend/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend/**/*"
+            ]
           }
         },
         "test": {
@@ -183,8 +194,13 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/frontend-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**/*"]
+            "tsConfig": [
+              "apps/frontend-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-e2e/**/*"
+            ]
           }
         }
       }
@@ -203,7 +219,10 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data/**/*"
+            ]
           }
         },
         "test": {
@@ -212,6 +231,139 @@
             "jestConfig": "libs/data/jest.config.js",
             "tsConfig": "libs/data/tsconfig.spec.json",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "frontend-angular": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/frontend-angular",
+      "sourceRoot": "apps/frontend-angular/src",
+      "prefix": "trends",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/frontend-angular",
+            "index": "apps/frontend-angular/src/index.html",
+            "main": "apps/frontend-angular/src/main.ts",
+            "polyfills": "apps/frontend-angular/src/polyfills.ts",
+            "tsConfig": "apps/frontend-angular/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/frontend-angular/src/favicon.ico",
+              "apps/frontend-angular/src/assets"
+            ],
+            "styles": [
+              "apps/frontend-angular/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend-angular/src/environments/environment.ts",
+                  "with": "apps/frontend-angular/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "frontend-angular:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend-angular:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontend-angular:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/frontend-angular/tsconfig.app.json",
+              "apps/frontend-angular/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-angular/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/frontend-angular/jest.config.js",
+            "tsConfig": "apps/frontend-angular/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/frontend-angular/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "frontend-angular-e2e": {
+      "root": "apps/frontend-angular-e2e",
+      "sourceRoot": "apps/frontend-angular-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/frontend-angular-e2e/cypress.json",
+            "tsConfig": "apps/frontend-angular-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-angular:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontend-angular:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/frontend-angular-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/frontend-angular-e2e/**/*"
+            ]
           }
         }
       }
@@ -283,6 +435,13 @@
       "library": {
         "linter": "eslint"
       }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     }
   },
   "defaultProject": "backend"

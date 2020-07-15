@@ -54,6 +54,56 @@ jobs:
         env:
           CI: true
 
+  frontend-angular-lint:
+    name: Frontend Angular lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run nx lint frontend-angular
+        env:
+          CI: true
+
+  frontend-angular-unit-tests:
+    name: Frontend Angular unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Restore cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run nx test -- frontend-angular --code-coverage
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        env:
+          CI: true
+
   frontend-e2e-lint:
     name: Frontend E2E lint
     runs-on: ubuntu-latest
