@@ -5,22 +5,14 @@ import { TrendResponseDto } from '../../src/app/trends/dto/trend-response.dto';
 import * as mongoose from 'mongoose';
 import { TrendDocument } from '../../src/app/trends/trends.schema';
 import { appUserFactory } from './users.fixture';
+import { coordinatesDtoBuilder, trendResponseDtoBuilder } from '@trends/data';
 
 export const coordinatesDtoFactory = new Factory(CoordinatesDto)
-  .props({
-    lat: () => faker.random.number({ min: 0, max: 10 }),
-    lng: () => faker.random.number({ min: 0, max: 10 }),
-  })
+  .mixins([coordinatesDtoBuilder])
   .done();
 
 export const trendResponseDtoFactory = new Factory(TrendResponseDto)
-  .props({
-    name: faker.random.word,
-    url: faker.random.word,
-    promotedContent: faker.random.boolean,
-    query: faker.random.word,
-    tweetVolume: faker.random.number,
-  })
+  .mixins([trendResponseDtoBuilder])
   .done();
 
 export const trendDocumentFactory = new Factory<TrendDocument>()

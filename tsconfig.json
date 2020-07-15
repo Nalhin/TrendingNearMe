@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@trends/data": ["libs/data/src/index.ts"]
+      "@trends/data": ["libs/data/src/index.ts"],
+      "@trends/backend/*": ["apps/backend/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

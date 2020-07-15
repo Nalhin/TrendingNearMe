@@ -23,10 +23,10 @@
   },
   "projects": {
     "backend": {
-      "tags": []
+      "tags": ["scope:backend"]
     },
     "backend-e2e": {
-      "tags": [],
+      "tags": ["scope:backend"],
       "implicitDependencies": ["backend"]
     },
     "frontend": {
@@ -37,7 +37,7 @@
       "implicitDependencies": ["frontend"]
     },
     "data": {
-      "tags": []
+      "tags": ["scope:shared"]
     }
   }
 }

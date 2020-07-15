@@ -4,10 +4,7 @@ import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import React from 'react';
-import {
-  AnonymousUser,
-  AuthenticatedUser,
-} from 'libs/data/src/lib/models/user.model';
+import { AnonymousUser, AuthenticatedUser } from '@trends/data';
 
 export const renderWithProviders = (
   ui: JSX.Element,

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { AppModule } from '../../../backend/src/app/app.module';
-import { MongooseConfigService } from '../../../backend/src/app/config/mongoose.config';
+import { AppModule } from '@trends/backend/src/app/app.module';
+import { MongooseConfigService } from '@trends/backend/src/app/config/mongoose.config';
 import { MongooseTestConfigService } from '../config/mongoose.config';
 import { MongooseTestUtils } from '../utils/mongoose.test-utils';
-import { userDocumentFactory } from '../../../backend/test/fixtures/users.fixture';
-import { User } from '../../../backend/src/app/users/users.schema';
+import { userDocumentFactory } from '@trends/backend/test/fixtures/users.fixture';
+import { User } from '@trends/backend/src/app/users/users.schema';
 import { authHeaderFactory } from '../utils/auth.utils';
 import * as request from 'supertest';
 

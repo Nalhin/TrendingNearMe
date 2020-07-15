@@ -1,17 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { AppModule } from '../../../backend/src/app/app.module';
-import { MongooseConfigService } from '../../../backend/src/app/config/mongoose.config';
+import { AppModule } from '@trends/backend/src/app/app.module';
+import { MongooseConfigService } from '@trends/backend/src/app/config/mongoose.config';
 import { MongooseTestConfigService } from '../config/mongoose.config';
 import {
   loginUserDtoFactory,
   registerUserDtoFactory,
   userDocumentFactory,
-} from '../../../backend/test/fixtures/users.fixture';
-import * as  request from 'supertest';
+} from '@trends/backend/test/fixtures/users.fixture';
+import * as request from 'supertest';
 import { MongooseTestUtils } from '../utils/mongoose.test-utils';
-import { User } from '../../../backend/src/app/users/users.schema';
-
+import { User } from '@trends/backend/src/app/users/users.schema';
 
 describe('AuthController (e2e)', () => {
   let app: INestApplication;
@@ -42,7 +41,10 @@ describe('AuthController (e2e)', () => {
     });
 
     it('should login user with valid credentials', async () => {
-      const loginUserDto = loginUserDtoFactory.buildOne({ username: user.username, password: user.password });
+      const loginUserDto = loginUserDtoFactory.buildOne({
+        username: user.username,
+        password: user.password,
+      });
 
       const { body } = await request(app.getHttpServer())
         .post('/auth/login')
@@ -61,7 +63,6 @@ describe('AuthController (e2e)', () => {
         .send(loginUserDto)
         .expect(401);
     });
-
 
     it('should return errors if body is invalid', async () => {
       const loginUserDto = loginUserDtoFactory.buildOne({ password: 'short' });
@@ -89,7 +90,10 @@ describe('AuthController (e2e)', () => {
     });
 
     it('should return errors if body is invalid', async () => {
-      const registerUserDto = registerUserDtoFactory.buildOne({ email: 'fake', password: 'short' });
+      const registerUserDto = registerUserDtoFactory.buildOne({
+        email: 'fake',
+        password: 'short',
+      });
 
       const { body } = await request(app.getHttpServer())
         .post('/auth/register')
