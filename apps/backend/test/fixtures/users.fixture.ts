@@ -8,7 +8,7 @@ import {
   authUserResponseDtoBuilder,
   loginUserDtoBuilder,
   registerUserDtoBuilder,
-} from '@trends/data';
+} from '@trends/fixtures';
 
 export const loginUserDtoFactory = new Factory(LoginUserDto)
   .mixins([loginUserDtoBuilder])

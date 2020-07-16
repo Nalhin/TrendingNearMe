@@ -24,7 +24,7 @@ export const routes: Route[] = [
     authValidator: noAuthValidator,
   },
   {
-    path: '/sign-up',
+    path: '/register',
     component: React.lazy(() => import('../views/register/Register')),
     authValidator: noAuthValidator,
   },

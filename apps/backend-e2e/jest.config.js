@@ -7,8 +7,8 @@ module.exports = {
   roots: ['./apps/backend-e2e'],
   rootDir: './../../',
   moduleNameMapper: {
-    "@trends/data": "<rootDir>/libs/data/src/index.ts",
-    "@trends/fixtures": "<rootDir>/libs/fixtures/src/index.ts",
-    "@trends/backend/(.*)": "<rootDir>/apps/backend/$1"
-  }
+    '@trends/data': '<rootDir>/libs/data/src/index.ts',
+    '@trends/fixtures': '<rootDir>/libs/fixtures/src/index.ts',
+    '@trends/backend/(.*)': '<rootDir>/apps/backend/$1',
+  },
 };
