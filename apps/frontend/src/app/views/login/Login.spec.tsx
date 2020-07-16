@@ -3,7 +3,7 @@ import { act, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import { AxiosResponse } from 'axios';
 
 import { AuthUserResponseDto } from '@trends/data';
-import { authUserResponseDtoBuilder, loginUserDtoBuilder } from '@trends/data';
+import { authUserResponseDtoBuilder, loginUserDtoBuilder } from '@trends/fixtures';
 
 import Login from './Login';
 import * as authApi from '../../api/auth.api';

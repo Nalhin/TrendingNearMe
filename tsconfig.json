@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@trends/data": ["libs/data/src/index.ts"],
+      "@trends/fixtures": ["libs/fixtures/src/index.ts"],
       "@trends/backend/*": ["apps/backend/*"]
     }
   },

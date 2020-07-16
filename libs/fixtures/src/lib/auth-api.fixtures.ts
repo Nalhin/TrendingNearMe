@@ -2,7 +2,7 @@ import {
   AuthUserResponseDto,
   LoginUserDto,
   RegisterUserDto,
-} from '../interfaces/api.interface';
+} from '@trends/data';
 import * as faker from 'faker';
 import { Factory } from 'factory.io';
 import { userResponseDtoBuilder } from './user-api.fixtures';

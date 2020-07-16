@@ -3,7 +3,7 @@ import { fireEvent, render, act } from '@testing-library/react';
 import { AxiosResponse } from 'axios';
 
 import { TrendResponseDto } from '@trends/data';
-import { trendResponseDtoBuilder } from '@trends/data';
+import { trendResponseDtoBuilder } from '@trends/fixtures';
 
 import * as trendsApi from '../../api/trends.api';
 import Home from './Home';

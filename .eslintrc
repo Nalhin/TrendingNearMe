@@ -28,9 +28,6 @@
       "error",
       {
         "enforceBuildableLibDependency": true,
-        "allow": [
-          "@trends/backend"
-        ],
         "depConstraints": [
           {
             "sourceTag": "scope:backend",

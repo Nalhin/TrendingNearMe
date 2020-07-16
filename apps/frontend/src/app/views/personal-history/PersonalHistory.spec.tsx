@@ -4,10 +4,9 @@ import { AxiosResponse } from 'axios';
 
 import {
   TrendHistoryDetailsResponseDto,
-  TrendHistoryDetailsResponseDtoBuilder,
   TrendHistoryResponseDto,
-  trendHistoryResponseDtoBuilder,
 } from '@trends/data';
+import { TrendHistoryDetailsResponseDtoBuilder, trendHistoryResponseDtoBuilder } from '@trends/fixtures';
 
 import * as trendsApi from '../../api/trends.api';
 import PersonalHistory from './PersonalHistory';
