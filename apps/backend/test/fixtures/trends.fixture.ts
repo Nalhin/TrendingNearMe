@@ -5,7 +5,10 @@ import { TrendResponseDto } from '../../src/app/trends/dto/trend-response.dto';
 import * as mongoose from 'mongoose';
 import { TrendDocument } from '../../src/app/trends/trends.schema';
 import { appUserFactory } from './users.fixture';
-import { coordinatesDtoBuilder, trendResponseDtoBuilder } from '@trends/data';
+import {
+  coordinatesDtoBuilder,
+  trendResponseDtoBuilder,
+} from '@trends/fixtures';
 
 export const coordinatesDtoFactory = new Factory(CoordinatesDto)
   .mixins([coordinatesDtoBuilder])

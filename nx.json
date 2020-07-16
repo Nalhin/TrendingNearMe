@@ -45,6 +45,9 @@
     "frontend-angular-e2e": {
       "tags": [],
       "implicitDependencies": ["frontend-angular"]
+    },
+    "fixtures": {
+      "tags": ["scope:shared"]
     }
   }
 }

@@ -6,7 +6,7 @@ import { AuthUserResponseDto } from '@trends/data';
 import {
   authUserResponseDtoBuilder,
   registerUserDtoBuilder,
-} from '@trends/data';
+} from '@trends/fixtures';
 
 import { renderWithProviders } from '../../../../test/utils/render-with-providers';
 import * as authApi from '../../api/auth.api';

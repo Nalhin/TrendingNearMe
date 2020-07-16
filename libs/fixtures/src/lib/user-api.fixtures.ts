@@ -1,4 +1,4 @@
-import { UserResponseDto } from '../interfaces/api.interface';
+import { UserResponseDto } from '@trends/data';
 import * as faker from 'faker';
 import { Factory } from 'factory.io';
 

@@ -45,7 +45,7 @@ const drawerItems: DrawerItem[] = [
   {
     text: 'Sign up',
     icon: <PersonAdd />,
-    to: '/sign-up',
+    to: '/register',
     hide: (user) => user.isAuthenticated,
   },
   {

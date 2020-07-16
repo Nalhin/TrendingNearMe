@@ -4,7 +4,7 @@ import {
   TrendHistoryDetailsResponseDto,
   TrendHistoryResponseDto,
   TrendResponseDto,
-} from '../interfaces/api.interface';
+} from '@trends/data';
 import * as faker from 'faker';
 
 export const coordinatesDtoBuilder = new Factory<CoordinatesDto>()
