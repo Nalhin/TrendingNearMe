@@ -24,7 +24,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "gen-typings": "npx swagger-typescript-api -p http://localhost:8000/api-json -o ./libs/data/src/lib/interfaces -n api.interface.ts --no-client"
+    "gen-typings": "npx swagger-typescript-api -p http://localhost:8000/api-json -o ./libs/data/src/lib/interfaces -n api.interface.ts --no-client",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "husky": {
     "hooks": {
@@ -33,6 +34,16 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^9.1.0",
+    "@angular/cdk": "^10.0.2",
+    "@angular/common": "^9.1.0",
+    "@angular/compiler": "^9.1.0",
+    "@angular/core": "^9.1.0",
+    "@angular/forms": "^9.1.0",
+    "@angular/material": "^10.0.2",
+    "@angular/platform-browser": "^9.1.0",
+    "@angular/platform-browser-dynamic": "^9.1.0",
+    "@angular/router": "^9.1.0",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@hapi/joi": "^17.1.1",
@@ -66,7 +77,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.4",
     "swagger-ui-express": "^4.1.4",
-    "universal-cookie": "^4.0.3"
+    "universal-cookie": "^4.0.3",
+    "zone.js": "^0.10.2"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
@@ -78,6 +90,7 @@
     "@nestjs/cli": "^7.4.1",
     "@nestjs/schematics": "^7.0.1",
     "@nestjs/testing": "^7.3.2",
+    "@nrwl/angular": "^9.5.1",
     "@nrwl/cypress": "9.5.1",
     "@nrwl/eslint-plugin-nx": "9.5.1",
     "@nrwl/jest": "9.5.1",
@@ -119,6 +132,11 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "@angular/compiler-cli": "^9.1.0",
+    "@angular/language-service": "^9.1.0",
+    "@angular-devkit/build-angular": "0.901.0",
+    "codelyzer": "~5.0.1",
+    "jest-preset-angular": "8.1.2"
   }
 }

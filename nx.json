@@ -38,6 +38,13 @@
     },
     "data": {
       "tags": ["scope:shared"]
+    },
+    "frontend-angular": {
+      "tags": []
+    },
+    "frontend-angular-e2e": {
+      "tags": [],
+      "implicitDependencies": ["frontend-angular"]
     }
   }
 }
