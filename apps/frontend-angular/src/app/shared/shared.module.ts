@@ -13,6 +13,7 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatListModule,
   MatIconModule,
+  MatCardModule,
 ];
 
 const MODULES = [CommonModule, ReactiveFormsModule, ...MATERIAL_MODULES];

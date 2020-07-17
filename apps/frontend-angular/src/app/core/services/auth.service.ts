@@ -6,10 +6,12 @@ import {
   LoginUserDto,
   RegisterUserDto,
   UserModel,
+  UserResponseDto,
 } from '@trends/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
+import { CookiesService } from './cookies.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +21,10 @@ export class AuthService {
     new AnonymousUser(),
   );
 
-  constructor(private readonly httpService: HttpClient) {}
+  constructor(
+    private readonly httpService: HttpClient,
+    private readonly cookiesService: CookiesService,
+  ) {}
 
   public login(loginUserDto: LoginUserDto): Observable<AuthUserResponseDto> {
     return this.httpService
@@ -38,13 +43,19 @@ export class AuthService {
       .post<AuthUserResponseDto>('/auth/register', registerUserDto)
       .pipe(
         tap((res) => {
-          this._user.next(new AuthenticatedUser(res.user));
+          this.authorizeUser(res.user, res.token);
         }),
       );
   }
 
+  private authorizeUser(user: UserResponseDto, token: string) {
+    this._user.next(new AuthenticatedUser(user));
+    this.cookiesService.setAuthCookie(token);
+  }
+
   public logout() {
     this._user.next(new AnonymousUser());
+    this.cookiesService.removeAuthCookie();
   }
 
   public get currentUser() {
