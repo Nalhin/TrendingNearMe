@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.guard';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AnonymousUser, AuthenticatedUser } from '@trends/data';
 import { authUserResponseDtoBuilder } from '@trends/fixtures';

@@ -9,7 +9,7 @@ import {
 } from '@trends/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +49,9 @@ export class AuthService {
 
   public get currentUser() {
     return this._user.value;
+  }
+
+  public isAuthenticated(): Observable<boolean> {
+    return this._user.pipe(map((u) => u.isAuthenticated));
   }
 }
