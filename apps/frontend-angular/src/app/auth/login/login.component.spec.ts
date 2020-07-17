@@ -14,6 +14,7 @@ import {
 } from '@trends/fixtures';
 import { SharedModule } from '../../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookiesService } from '../../core/services/cookies.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -29,6 +30,7 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
         SharedModule,
+        CookiesService
       ],
       providers: [FormBuilder],
       declarations: [LoginComponent],

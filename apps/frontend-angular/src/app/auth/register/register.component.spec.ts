@@ -14,6 +14,7 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookiesService } from '../../core/services/cookies.service';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -77,7 +78,7 @@ describe('RegisterComponent', () => {
   });
 
   describe('onSubmit', () => {
-    it('should navigate on login', () => {
+    it('should navigate on register', () => {
       jest
         .spyOn(authService, 'register')
         .mockReturnValueOnce(of(authUserResponseDtoBuilder.buildOne()));

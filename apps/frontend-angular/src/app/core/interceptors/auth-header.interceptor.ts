@@ -19,7 +19,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const apiReq = request.clone({
       headers: new HttpHeaders({
-        Authorization: `Bearer ${this.cookiesService.getAuthCookie() ?? ""}`,
+        Authorization: `Bearer ${this.cookiesService.getAuthCookie() ?? ''}`,
       }),
     });
     return next.handle(apiReq);

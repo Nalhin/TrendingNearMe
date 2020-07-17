@@ -9,15 +9,15 @@ const AUTH_COOKIE = 'auth';
 export class CookiesService {
   private cookies = new Cookies();
 
-  getAuthCookie():string | undefined {
+  getAuthCookie(): string | undefined {
     return this.cookies.get(AUTH_COOKIE);
   }
 
-  setAuthCookie(token: string):void {
+  setAuthCookie(token: string): void {
     this.cookies.set(AUTH_COOKIE, token);
   }
 
-  removeAuthCookie():void {
+  removeAuthCookie(): void {
     this.cookies.remove(AUTH_COOKIE);
   }
 }

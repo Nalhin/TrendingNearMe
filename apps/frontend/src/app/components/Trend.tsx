@@ -17,7 +17,9 @@ const Trend: React.FC<Props> = ({ trend: { name, url } }) => {
     <StyledCard>
       <CardContent>
         <Typography variant="h5" component="h2">
-          <a href={url}>{name}</a>
+          <a href={url} rel="noreferrer noopener">
+            {name}
+          </a>
         </Typography>
       </CardContent>
     </StyledCard>
