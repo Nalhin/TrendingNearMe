@@ -4,7 +4,7 @@
   </button>
   <h1>Trending near me!</h1>
 </mat-toolbar>
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="nav-content">
   <mat-sidenav
     #sidenav
     [mode]="'over'"
@@ -16,31 +16,31 @@
       <a
         mat-list-item
         routerLink="/personal-history"
-        *ngIf="isAuthenticated$ | async"
+        *ngIf="isAuthenticated"
         >Personal history</a
       >
       <a
         mat-list-item
         routerLink="/auth/login"
-        *ngIf="!(isAuthenticated$ | async)"
+        *ngIf="!isAuthenticated"
         >Login
       </a>
       <a
         mat-list-item
         routerLink="/auth/register"
-        *ngIf="!(isAuthenticated$ | async)"
+        *ngIf="!isAuthenticated"
         >Register
       </a>
       <a
         mat-list-item
-        *ngIf="isAuthenticated$ | async"
+        *ngIf="isAuthenticated"
         routerLink="/auth/logout"
       >
         Logout
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="nav-content">
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

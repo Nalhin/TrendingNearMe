@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -26,7 +26,6 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        ReactiveFormsModule,
         BrowserAnimationsModule,
         SharedModule,
       ],
@@ -60,7 +59,7 @@ describe('LoginComponent', () => {
 
       for (const [key, value] of Object.entries(loginUserDto)) {
         fixture.debugElement
-          .query(By.css(`#${key}`))
+          .query(By.css(`input[formcontrolname=${key}]`))
           .triggerEventHandler('input', {
             target: {
               value,

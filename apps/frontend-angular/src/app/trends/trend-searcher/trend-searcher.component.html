@@ -1,0 +1,10 @@
+<div>
+  <trends-map
+    (mapClick)="searchTrends($event)"
+    [markers]="markers"
+  ></trends-map>
+  <trends-trend-card-list
+    *ngIf="trends$ | async as trends"
+    [trends]="trends"
+  ></trends-trend-card-list>
+</div>

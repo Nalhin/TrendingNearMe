@@ -12,7 +12,7 @@ import {
 } from '@trends/fixtures';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RegisterComponent', () => {
@@ -59,7 +59,7 @@ describe('RegisterComponent', () => {
 
       for (const [key, value] of Object.entries(registerUserDto)) {
         fixture.debugElement
-          .query(By.css(`#${key}`))
+          .query(By.css(`input[formcontrolname=${key}]`))
           .triggerEventHandler('input', {
             target: {
               value,
@@ -77,7 +77,7 @@ describe('RegisterComponent', () => {
   });
 
   describe('onSubmit', () => {
-    it('should navigate on login', () => {
+    it('should navigate on register', () => {
       jest
         .spyOn(authService, 'register')
         .mockReturnValueOnce(of(authUserResponseDtoBuilder.buildOne()));

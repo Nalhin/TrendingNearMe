@@ -1,0 +1,9 @@
+<trends-map
+  (popupOpen)="onPopupOpen($event)"
+  (popupClose)="onPopupClose()"
+  [markers]="markers$ | async"
+></trends-map>
+<trends-trend-card-list
+  *ngIf="trendHistoryDetails"
+  [trends]="trendHistoryDetails.trends"
+></trends-trend-card-list>

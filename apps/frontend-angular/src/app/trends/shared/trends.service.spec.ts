@@ -1,19 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
+import { TrendsService } from './trends.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CookiesService } from './cookies.service';
 
-describe('AuthService', () => {
-  let service: AuthService;
-  let cookiesService: CookiesService;
+describe('TrendsService', () => {
+  let service: TrendsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    service = TestBed.inject(AuthService);
-    cookiesService = TestBed.inject(CookiesService);
+    service = TestBed.inject(TrendsService);
   });
 
   it('should be created', () => {
