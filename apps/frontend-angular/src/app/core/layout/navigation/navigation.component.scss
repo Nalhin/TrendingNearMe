@@ -2,7 +2,20 @@
   position: fixed;
   z-index: 2;
 }
+
 .nav-content {
   flex: 1 0 auto;
   min-height: calc(100vh - 64px);
+
+  @media only screen and (max-width: 600px) {
+    min-height: calc(100vh - 56px);
+  }
+}
+
+.sidenav {
+  min-width: 180px;
+}
+
+.nav-icon {
+  margin-left: auto;
 }

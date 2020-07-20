@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TrendHistoryDetailsResponseDto } from '@trends/data';
+import { toRelativeDate, TrendHistoryDetailsResponseDto } from '@trends/data';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map, share, switchMap } from 'rxjs/operators';
 import { TrendsService } from '../shared/trends.service';
@@ -29,7 +29,7 @@ export class PersonalHistoryComponent implements OnInit, OnDestroy {
       .pipe(
         map((trends) =>
           trends.map((trend) =>
-            customMarkerFactory(trend.coordinates, trend.created, {
+            customMarkerFactory(trend.coordinates, toRelativeDate(trend.created), {
               markerId: trend._id,
             }),
           ),

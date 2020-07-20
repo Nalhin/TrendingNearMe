@@ -12,15 +12,16 @@ import { AuthService } from '../../core/services/auth.service';
 export class RegisterComponent {
   registerForm = this.fb.group({
     username: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
   });
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly authService: AuthService,
-  ) {}
+  ) {
+  }
 
   onSubmit() {
     this.authService

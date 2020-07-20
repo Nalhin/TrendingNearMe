@@ -8,9 +8,9 @@ import {
 } from '../../api/trends.api';
 import { useCurrentPosition } from '../../hooks/useCurrentPosition';
 import MapMarker from '../../components/MapMarker';
-import { toRelativeDate } from '../../utils/relative-date';
 import Map from '../../components/Map';
 import Trend from '../../components/Trend';
+import { toRelativeDate } from '@trends/data';
 
 const StyledContainer = styled.div`
   position: fixed;

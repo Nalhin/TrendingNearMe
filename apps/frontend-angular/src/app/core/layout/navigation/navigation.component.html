@@ -9,34 +9,29 @@
     #sidenav
     [mode]="'over'"
     [fixedInViewport]="true"
-    fixedTopGap="64"
+    [fixedTopGap]="isMobile ? 56 : 64"
+    class="sidenav"
   >
     <mat-nav-list>
-      <a mat-list-item routerLink="/">Map</a>
-      <a
-        mat-list-item
-        routerLink="/personal-history"
-        *ngIf="isAuthenticated"
-        >Personal history</a
-      >
-      <a
-        mat-list-item
-        routerLink="/auth/login"
-        *ngIf="!isAuthenticated"
-        >Login
+      <a mat-list-item routerLink="/"
+      >Map
+        <mat-icon class="nav-icon">near_me</mat-icon>
       </a>
-      <a
-        mat-list-item
-        routerLink="/auth/register"
-        *ngIf="!isAuthenticated"
-        >Register
+      <a mat-list-item routerLink="/personal-history" *ngIf="isAuthenticated"
+      >Personal history
+        <mat-icon class="nav-icon">history</mat-icon>
       </a>
-      <a
-        mat-list-item
-        *ngIf="isAuthenticated"
-        routerLink="/auth/logout"
-      >
+      <a mat-list-item routerLink="/auth/login" *ngIf="!isAuthenticated">
+        Login
+        <mat-icon class="nav-icon">login</mat-icon>
+      </a>
+      <a mat-list-item routerLink="/auth/register" *ngIf="!isAuthenticated">
+        Register
+        <mat-icon class="nav-icon">person_add</mat-icon>
+      </a>
+      <a mat-list-item routerLink="/auth/logout" *ngIf="isAuthenticated">
         Logout
+        <mat-icon class="nav-icon">work_off</mat-icon>
       </a>
     </mat-nav-list>
   </mat-sidenav>

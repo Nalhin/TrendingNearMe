@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'trends-logout',
   templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
   constructor(private readonly authService: AuthService) {}

@@ -12,6 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { CookiesService } from './cookies.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,15 +24,30 @@ export class AuthService {
 
   constructor(
     private readonly httpService: HttpClient,
+    private readonly userService: UserService,
     private readonly cookiesService: CookiesService,
-  ) {}
+  ) {
+  }
+
+  async onInit(): Promise<void> {
+    const authCookie = this.cookiesService.getAuthCookie();
+    if (!authCookie) {
+      return;
+    }
+    try {
+      const res = await this.userService.me().toPromise();
+      this._user.next(new AuthenticatedUser(res));
+    } catch (e) {
+      this.cookiesService.removeAuthCookie();
+    }
+  }
 
   public login(loginUserDto: LoginUserDto): Observable<AuthUserResponseDto> {
     return this.httpService
       .post<AuthUserResponseDto>('/auth/login', loginUserDto)
       .pipe(
         tap((res) => {
-          this._user.next(new AuthenticatedUser(res.user));
+          this.authorizeUser(res.user, res.token);
         }),
       );
   }

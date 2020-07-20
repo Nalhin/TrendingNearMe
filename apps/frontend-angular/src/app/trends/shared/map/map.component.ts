@@ -28,7 +28,7 @@ export class MapComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   @ViewChild('map') private mapContainer: ElementRef<HTMLElement>;
 
-  @Input() markers?: L.Marker[];
+  @Input() markers: L.Marker[] = [];
 
   @Output() mapClick: EventEmitter<CoordinatesDto> = new EventEmitter();
   @Output() popupOpen: EventEmitter<string> = new EventEmitter();
@@ -39,7 +39,7 @@ export class MapComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   private initMap(): void {
-    this.map = new L.Map(this.mapContainer.nativeElement);
+    this.map = new L.Map(this.mapContainer.nativeElement, { dragging: true });
     this.map.setView(CRACOW_COORDS, 13);
 
     const tiles = L.tileLayer(
@@ -60,7 +60,7 @@ export class MapComponent implements AfterViewInit, OnDestroy, OnChanges {
     const prevMarkers = changes.markers.previousValue;
     const markers = changes.markers.currentValue;
 
-    if (prevMarkers && prevMarkers !== markers && this.markerGroup) {
+    if (prevMarkers !== markers && this.markerGroup) {
       this.markerGroup.clearLayers();
     }
 

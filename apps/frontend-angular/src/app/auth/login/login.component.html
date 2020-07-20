@@ -1,18 +1,17 @@
 <mat-card class="login-card">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
     <mat-form-field>
-      <label for="username">
+      <mat-label>
         Username
-      </label>
+      </mat-label>
       <input matInput id="username" type="text" formControlName="username"/>
     </mat-form-field>
     <mat-form-field>
-      <label for="password">
+      <mat-label>
         Password
-      </label>
+      </mat-label>
       <input
         matInput
-        id="password"
         type="password"
         formControlName="password"
       />
