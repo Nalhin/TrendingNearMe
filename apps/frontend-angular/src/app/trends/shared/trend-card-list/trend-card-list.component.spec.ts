@@ -4,6 +4,7 @@ import { TrendCardListComponent } from './trend-card-list.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { trendResponseDtoBuilder } from '@trends/fixtures';
+import { TrendCardComponent } from '../trend-card/trend-card.component';
 
 describe('TrendCardListComponent', () => {
   let component: TrendCardListComponent;
@@ -12,14 +13,14 @@ describe('TrendCardListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, BrowserAnimationsModule],
-      declarations: [TrendCardListComponent],
+      declarations: [TrendCardListComponent, TrendCardComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TrendCardListComponent);
     component = fixture.componentInstance;
-    component.trends = trendResponseDtoBuilder.buildMany(3)
+    component.trends = trendResponseDtoBuilder.buildMany(3);
     fixture.detectChanges();
   });
 

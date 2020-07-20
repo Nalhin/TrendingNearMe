@@ -13,7 +13,7 @@ describe('AuthService', () => {
       imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(AuthService);
-    cookiesService= TestBed.inject(CookiesService);
+    cookiesService = TestBed.inject(CookiesService);
   });
 
   it('should be created', () => {

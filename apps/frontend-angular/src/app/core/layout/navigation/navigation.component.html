@@ -16,24 +16,24 @@
       <a
         mat-list-item
         routerLink="/personal-history"
-        *ngIf="isAuthenticated$ | async"
+        *ngIf="isAuthenticated"
         >Personal history</a
       >
       <a
         mat-list-item
         routerLink="/auth/login"
-        *ngIf="!(isAuthenticated$ | async)"
+        *ngIf="!isAuthenticated"
         >Login
       </a>
       <a
         mat-list-item
         routerLink="/auth/register"
-        *ngIf="!(isAuthenticated$ | async)"
+        *ngIf="!isAuthenticated"
         >Register
       </a>
       <a
         mat-list-item
-        *ngIf="isAuthenticated$ | async"
+        *ngIf="isAuthenticated"
         routerLink="/auth/logout"
       >
         Logout

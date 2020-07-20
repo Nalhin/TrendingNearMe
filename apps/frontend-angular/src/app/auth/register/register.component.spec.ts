@@ -12,9 +12,8 @@ import {
 } from '@trends/fixtures';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CookiesService } from '../../core/services/cookies.service';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -60,7 +59,7 @@ describe('RegisterComponent', () => {
 
       for (const [key, value] of Object.entries(registerUserDto)) {
         fixture.debugElement
-          .query(By.css(`#${key}`))
+          .query(By.css(`input[formcontrolname=${key}]`))
           .triggerEventHandler('input', {
             target: {
               value,

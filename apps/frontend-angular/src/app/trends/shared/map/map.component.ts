@@ -5,7 +5,10 @@ import {
   OnDestroy,
   Input,
   SimpleChanges,
-  OnChanges, AfterViewInit, ElementRef, ViewChild,
+  OnChanges,
+  AfterViewInit,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
 import * as L from 'leaflet';
 import { CoordinatesDto } from '@trends/data';
@@ -37,10 +40,7 @@ export class MapComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   private initMap(): void {
     this.map = new L.Map(this.mapContainer.nativeElement);
-    this.map.setView(
-      CRACOW_COORDS,
-      13,
-    );
+    this.map.setView(CRACOW_COORDS, 13);
 
     const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -66,7 +66,7 @@ export class MapComponent implements AfterViewInit, OnDestroy, OnChanges {
 
     if (this.map && markers) {
       this.markerGroup = new L.LayerGroup(markers);
-      this.map.addLayer(this.markerGroup)
+      this.map.addLayer(this.markerGroup);
     }
   }
 

@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'trends-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })
-export class NavigationComponent implements OnInit {
-  isAuthenticated$: Observable<boolean>;
+export class NavigationComponent implements OnInit, OnDestroy {
 
-  constructor(private readonly authService: AuthService) {}
+  isAuthenticated: boolean;
+  subscription: Subscription;
+
+  constructor(private readonly authService: AuthService) {
+  }
 
   ngOnInit(): void {
-    this.isAuthenticated$ = this.authService.isAuthenticated();
+    this.subscription = this.authService.isAuthenticated().subscribe((val) => {
+      this.isAuthenticated = val;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

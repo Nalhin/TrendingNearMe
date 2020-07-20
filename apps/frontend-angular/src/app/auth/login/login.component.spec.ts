@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -14,7 +14,6 @@ import {
 } from '@trends/fixtures';
 import { SharedModule } from '../../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CookiesService } from '../../core/services/cookies.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -27,10 +26,8 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        ReactiveFormsModule,
         BrowserAnimationsModule,
         SharedModule,
-        CookiesService
       ],
       providers: [FormBuilder],
       declarations: [LoginComponent],
@@ -62,7 +59,7 @@ describe('LoginComponent', () => {
 
       for (const [key, value] of Object.entries(loginUserDto)) {
         fixture.debugElement
-          .query(By.css(`#${key}`))
+          .query(By.css(`input[formcontrolname=${key}]`))
           .triggerEventHandler('input', {
             target: {
               value,

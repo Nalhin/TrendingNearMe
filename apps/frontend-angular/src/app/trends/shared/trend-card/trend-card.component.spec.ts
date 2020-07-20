@@ -19,7 +19,7 @@ describe('TrendCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TrendCardComponent);
     component = fixture.componentInstance;
-    component.trend = trendResponseDtoBuilder.buildOne()
+    component.trend = trendResponseDtoBuilder.buildOne();
     fixture.detectChanges();
   });
 

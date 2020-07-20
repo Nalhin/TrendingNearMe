@@ -13,13 +13,18 @@ import { tap } from 'rxjs/operators';
 })
 export class TrendSearcherComponent {
   trends$: Observable<TrendResponseDto[]>;
-  markers:L.Marker[] = []
+  markers: L.Marker[] = [];
 
   constructor(private readonly trendsService: TrendsService) {}
 
   searchTrends(location: CoordinatesDto) {
-    this.trends$ = this.trendsService.getTrendsByLocation(location)
-      .pipe(tap(()=> this.markers = [customMarkerFactory(location,"Current search")]));
-
+    this.trends$ = this.trendsService
+      .getTrendsByLocation(location)
+      .pipe(
+        tap(
+          () =>
+            (this.markers = [customMarkerFactory(location, 'Current search')]),
+        ),
+      );
   }
 }

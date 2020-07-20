@@ -1,13 +1,13 @@
 import * as L from 'leaflet';
-import { CoordinatesDto} from '@trends/data';
+import { CoordinatesDto } from '@trends/data';
 import { Layer, PopupEvent, PopupOptions } from 'leaflet';
 
 export interface ExtendedPopupOptions extends PopupOptions {
-  markerId: string
+  markerId: string;
 }
 
 export interface CustomPopupEvent extends PopupEvent {
-  popup: CustomMapPopup
+  popup: CustomMapPopup;
 }
 
 class CustomMapPopup extends L.Popup {
@@ -18,7 +18,11 @@ class CustomMapPopup extends L.Popup {
   }
 }
 
-export const customMarkerFactory = (coordinates:CoordinatesDto,content:string,options?:ExtendedPopupOptions) => {
+export const customMarkerFactory = (
+  coordinates: CoordinatesDto,
+  content: string,
+  options?: ExtendedPopupOptions,
+) => {
   const marker = new L.Marker(coordinates);
   const popup = new CustomMapPopup(options).setContent(content);
   marker.bindPopup(popup).openPopup();

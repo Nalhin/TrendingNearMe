@@ -5,7 +5,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { AuthService } from '../../core/services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CookiesService } from '../../core/services/cookies.service';
 
 describe('LogoutComponent', () => {
   let component: LogoutComponent;
@@ -14,7 +13,7 @@ describe('LogoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule, SharedModule, CookiesService],
+      imports: [RouterTestingModule, HttpClientTestingModule, SharedModule],
       declarations: [LogoutComponent],
     }).compileComponents();
   }));
