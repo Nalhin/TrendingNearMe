@@ -6,7 +6,7 @@ const CRACOW_COORDS = { lat: 50.049683, lng: 19.944544 };
 
 export function useCurrentPosition(defaultPosition?: CoordinatesDto) {
   const [position, setPosition] = React.useState<CoordinatesDto>(
-    defaultPosition || CRACOW_COORDS,
+    defaultPosition ?? CRACOW_COORDS,
   );
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {

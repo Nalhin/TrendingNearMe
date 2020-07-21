@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpRequest } from '@angular/common/http';
 import { of } from 'rxjs';
 import { LoadingInterceptor } from './loading.interceptor';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '../../services/loading/loading.service';
 
 describe('LoadingInterceptor', () => {
   let interceptor: LoadingInterceptor;

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
@@ -13,22 +13,28 @@ export class NavigationComponent implements OnInit, OnDestroy {
   isMobile: boolean;
   subscriptions: Subscription[] = [];
 
-  constructor(private readonly authService: AuthService, private readonly breakpointObserver: BreakpointObserver) {
-  }
+  constructor(
+    private readonly authService: AuthService,
+    private readonly breakpointObserver: BreakpointObserver,
+  ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(this.authService.isAuthenticated().subscribe((val) => {
-      this.isAuthenticated = val;
-    }));
+    this.subscriptions.push(
+      this.authService.isAuthenticated().subscribe((val) => {
+        this.isAuthenticated = val;
+      }),
+    );
 
-    this.subscriptions.push(this.breakpointObserver.observe([
-      '(max-width: 599px)',
-    ]).subscribe(result => {
-      this.isMobile = result.matches;
-    }));
+    this.subscriptions.push(
+      this.breakpointObserver
+        .observe(['(max-width: 599px)'])
+        .subscribe((result) => {
+          this.isMobile = result.matches;
+        }),
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

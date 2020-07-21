@@ -16,6 +16,7 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   ...rest
 }) => {
   const { user } = useUser();
+
   if (!Component) {
     return null;
   }

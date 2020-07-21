@@ -6,7 +6,7 @@ const AUTH_COOKIE = 'auth';
 @Injectable({
   providedIn: 'root',
 })
-export class CookiesService {
+export class CookieService {
   private cookies = new Cookies();
 
   getAuthCookie(): string | undefined {

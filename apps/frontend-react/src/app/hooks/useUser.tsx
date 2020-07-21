@@ -53,7 +53,7 @@ export const useUserProviderState = (
           const resp = await fetchMe();
           setUser(new AuthenticatedUser(resp.data));
         } catch (e) {
-          logoutUser();
+          cookies.removeAuthCookie();
         }
       }
       setIsLoading(false);

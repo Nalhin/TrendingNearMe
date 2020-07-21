@@ -61,7 +61,7 @@ describe('useUser', () => {
       expect(result.current.isLoading).toBeFalsy();
     });
 
-    it('should logout current user and remove auth cookies', () => {
+    it('should logout current user and remove auth cookie', () => {
       jest.spyOn(cookies, 'removeAuthCookie');
       const { result } = renderHook(() =>
         useUserProviderState(new AuthenticatedUser(user)),

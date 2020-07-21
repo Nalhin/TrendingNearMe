@@ -7,21 +7,25 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CookiesService } from '../services/cookies.service';
+import { CookieService } from '../../services/cookie/cookie.service';
 
 @Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
-  constructor(private readonly cookiesService: CookiesService) {}
+  constructor(private readonly cookiesService: CookieService) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const apiReq = request.clone({
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.cookiesService.getAuthCookie() ?? ''}`,
-      }),
-    });
+    const token = this.cookiesService.getAuthCookie();
+
+    const apiReq = token
+      ? request.clone({
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+        }),
+      })
+      : request
     return next.handle(apiReq);
   }
 }

@@ -34,7 +34,7 @@ export const trendHistoryResponseDtoBuilder = new Factory<
   })
   .done();
 
-export const TrendHistoryDetailsResponseDtoBuilder = new Factory<
+export const trendHistoryDetailsResponseDtoBuilder = new Factory<
   TrendHistoryDetailsResponseDto
 >()
   .props({

@@ -51,7 +51,7 @@ const drawerItems: DrawerItem[] = [
   {
     text: 'Personal history',
     icon: <History />,
-    to: '/personal-history',
+    to: '/personal-history/',
     hide: (user) => !user.isAuthenticated,
   },
   {
@@ -70,6 +70,11 @@ const StyledLink = styled(Link)`
 const StyledDrawer = styled(Drawer)`
   .MuiDrawer-paper {
     min-width: 180px;
+    margin-top: 64px;
+
+    @media only screen and (max-width: 600px) {
+      margin-top: 56px;
+    }
   }
 `;
 
@@ -83,12 +88,6 @@ const NavDrawer: React.FC<Props> = ({ isOpen, open }) => {
 
   return (
     <StyledDrawer variant="persistent" anchor="left" open={isOpen}>
-      <div>
-        <IconButton onClick={open}>
-          <ChevronRight />
-        </IconButton>
-      </div>
-      <Divider />
       <List>
         {drawerItems
           .filter((item) => !item.hide || !item.hide(user))

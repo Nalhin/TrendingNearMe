@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'trends-login',
@@ -12,7 +12,10 @@ import { AuthService } from '../../core/services/auth.service';
 export class LoginComponent {
   loginForm = this.fb.group({
     username: ['', Validators.required],
-    password: ['', Validators.compose([Validators.required,Validators.minLength(6)])],
+    password: [
+      '',
+      Validators.compose([Validators.required, Validators.minLength(6)]),
+    ],
   });
 
   constructor(

@@ -11,7 +11,7 @@ import MapMarker from '../../components/MapMarker';
 import Map from '../../components/Map';
 import Trend from '../../components/Trend';
 import { toRelativeDate } from '@trends/data';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   position: fixed;

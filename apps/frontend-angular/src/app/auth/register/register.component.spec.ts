@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegisterComponent } from './register.component';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import {

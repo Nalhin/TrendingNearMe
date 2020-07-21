@@ -12,14 +12,7 @@ const RouteView: React.FC = () => {
     >
       <Switch>
         {routes.map((route) => (
-          <CustomRoute
-            key={route.path}
-            path={route.path}
-            exact={route.exact}
-            authGuard={route.authGuard}
-            redirectTo={route.redirectTo}
-            component={route.component}
-          />
+          <CustomRoute key={route.path} {...route} />
         ))}
       </Switch>
     </React.Suspense>

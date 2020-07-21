@@ -11,8 +11,8 @@ import {
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
-import { CookiesService } from './cookies.service';
-import { UserService } from './user.service';
+import { CookieService } from '../cookie/cookie.service';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +25,8 @@ export class AuthService {
   constructor(
     private readonly httpService: HttpClient,
     private readonly userService: UserService,
-    private readonly cookiesService: CookiesService,
-  ) {
-  }
+    private readonly cookiesService: CookieService,
+  ) {}
 
   async onInit(): Promise<void> {
     const authCookie = this.cookiesService.getAuthCookie();

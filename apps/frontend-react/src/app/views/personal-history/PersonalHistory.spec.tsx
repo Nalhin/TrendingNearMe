@@ -1,4 +1,4 @@
-import { render, act, waitFor, fireEvent } from '@testing-library/react';
+import { act, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
 import { AxiosResponse } from 'axios';
 
@@ -7,7 +7,7 @@ import {
   TrendHistoryResponseDto,
 } from '@trends/data';
 import {
-  TrendHistoryDetailsResponseDtoBuilder,
+  trendHistoryDetailsResponseDtoBuilder,
   trendHistoryResponseDtoBuilder,
 } from '@trends/fixtures';
 
@@ -38,7 +38,7 @@ describe('Personal History Page', () => {
   });
 
   it('should fetch and display data when marker is clicked', async () => {
-    const trendDetails = TrendHistoryDetailsResponseDtoBuilder.buildOne();
+    const trendDetails = trendHistoryDetailsResponseDtoBuilder.buildOne();
     jest
       .spyOn(trendsApi, 'fetchGetTrendsHistory')
       .mockResolvedValueOnce({ data: trendHistory } as AxiosResponse<

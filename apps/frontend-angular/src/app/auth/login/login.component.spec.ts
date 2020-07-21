@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 
 import { LoginComponent } from './login.component';
