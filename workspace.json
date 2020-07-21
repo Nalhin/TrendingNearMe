@@ -82,9 +82,9 @@
         }
       }
     },
-    "frontend": {
-      "root": "apps/frontend",
-      "sourceRoot": "apps/frontend/src",
+    "frontend-react": {
+      "root": "apps/frontend-react",
+      "sourceRoot": "apps/frontend-react/src",
       "projectType": "application",
       "schematics": {},
       "architect": {
@@ -92,13 +92,13 @@
           "builder": "@nrwl/web:build",
           "options": {
             "outputPath": "dist/apps/frontend",
-            "index": "apps/frontend/src/index.html",
-            "main": "apps/frontend/src/main.tsx",
-            "polyfills": "apps/frontend/src/polyfills.ts",
-            "tsConfig": "apps/frontend/tsconfig.app.json",
+            "index": "apps/frontend-react/src/index.html",
+            "main": "apps/frontend-react/src/main.tsx",
+            "polyfills": "apps/frontend-react/src/polyfills.ts",
+            "tsConfig": "apps/frontend-react/tsconfig.app.json",
             "assets": [
-              "apps/frontend/src/favicon.ico",
-              "apps/frontend/src/assets"
+              "apps/frontend-react/src/favicon.ico",
+              "apps/frontend-react/src/assets"
             ],
             "styles": [],
             "scripts": [],
@@ -108,8 +108,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/frontend/src/environments/environment.ts",
-                  "with": "apps/frontend/src/environments/environment.prod.ts"
+                  "replace": "apps/frontend-react/src/environments/environment.ts",
+                  "with": "apps/frontend-react/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -132,11 +132,11 @@
         "serve": {
           "builder": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "frontend:build"
+            "buildTarget": "frontend-react:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "frontend:build:production"
+              "buildTarget": "frontend-react:build:production"
             }
           }
         },
@@ -145,37 +145,37 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "apps/frontend/tsconfig.app.json",
-              "apps/frontend/tsconfig.spec.json"
+              "apps/frontend-react/tsconfig.app.json",
+              "apps/frontend-react/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/frontend/**/*"]
+            "exclude": ["**/node_modules/**", "!apps/frontend-react/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/frontend/jest.config.js",
-            "tsConfig": "apps/frontend/tsconfig.spec.json",
+            "jestConfig": "apps/frontend-react/jest.config.js",
+            "tsConfig": "apps/frontend-react/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
       }
     },
-    "frontend-e2e": {
-      "root": "apps/frontend-e2e",
-      "sourceRoot": "apps/frontend-e2e/src",
+    "frontend-react-e2e": {
+      "root": "apps/frontend-react-e2e",
+      "sourceRoot": "apps/frontend-react-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/frontend-e2e/cypress.json",
-            "tsConfig": "apps/frontend-e2e/tsconfig.e2e.json",
-            "devServerTarget": "frontend:serve"
+            "cypressConfig": "apps/frontend-react-e2e/cypress.json",
+            "tsConfig": "apps/frontend-react-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontend-react:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "frontend:serve:production"
+              "devServerTarget": "frontend-react:serve:production"
             }
           }
         },
@@ -183,8 +183,8 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["apps/frontend-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/frontend-e2e/**/*"]
+            "tsConfig": ["apps/frontend-react-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/frontend-react-e2e/**/*"]
           }
         }
       }

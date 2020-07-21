@@ -29,12 +29,12 @@
       "tags": ["scope:backend"],
       "implicitDependencies": ["backend"]
     },
-    "frontend": {
-      "tags": ["scope:frontend"]
+    "frontend-react": {
+      "tags": []
     },
-    "frontend-e2e": {
+    "frontend-react-e2e": {
       "tags": [],
-      "implicitDependencies": ["frontend"]
+      "implicitDependencies": ["frontend-react"]
     },
     "data": {
       "tags": ["scope:shared"]

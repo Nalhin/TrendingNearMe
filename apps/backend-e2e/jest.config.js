@@ -3,7 +3,7 @@ module.exports = {
   preset: './jest.config.js',
   coverageDirectory: './coverage/apps/backend-e2e',
   testEnvironment: 'node',
-  collectCoverageFrom: ['./apps/backend/src/**'],
+  collectCoverageFrom: ['./apps/backend/src/app/**'],
   roots: ['./apps/backend-e2e'],
   rootDir: './../../',
   moduleNameMapper: {
