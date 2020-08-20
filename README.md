@@ -50,12 +50,12 @@ Interactive Leaflet map that displays trends near selected location and allows u
 #### Frameworks & Libraries
 
 * NestJS
-* React
+* ReactS
 * Angular
 
 #### Summary
 
-The project was developed following the modern web development trends and utilizing advanced typescript concepts such as:
+The project was developed following modern web development trends and utilizing advanced typescript concepts such as:
 
 * Decorators
 * Metadata
@@ -70,8 +70,8 @@ Project consists of the following applications & libraries.
 ```
 apps
 ├── backend (and backend-e2e)
-├── frontend-react (and frontend-react-e2e)
-└── frontend-angular (and frontend-angular-e2e)
+├── frontend-react
+└── frontend-angular
 
 libs
 ├── data (interfaces, models and reusable functions)
@@ -159,7 +159,7 @@ Open ```http://localhost:4200/``` in your browser.
 
 In order to run tests for the selected NX app refer to the commands below. 
 
-#### Backend Unit tests
+#### Backend unit tests
 
 ```bash
 npm run test backend
@@ -168,17 +168,17 @@ npm run test backend
 #### Backend E2E tests
 
 ```bash
-docker-compose ./docker/docker-compose.dev.yml up -d
+docker-compose -f ./docker/docker-compose.dev.yml up -d
 npm run e2e backend-e2e
 ```
 
-#### Frontend React Unit tests
+#### Frontend React unit tests
 
 ```bash
 npm run test frontend-react
 ```
 
-#### Frontend Angular Unit tests
+#### Frontend Angular unit tests
 
 ```bash
 npm run test frontend-angular

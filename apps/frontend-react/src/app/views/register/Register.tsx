@@ -10,7 +10,7 @@ import AlertSnackbar from '../../components/AlertSnackbar';
 
 const StyledCard = styled(Card)`
   max-width: 400px;
-  margin: 0 auto;
+  margin: 48px auto;
 `;
 
 const StyledForm = styled.form`
@@ -19,7 +19,7 @@ const StyledForm = styled.form`
   padding: 12px;
 `;
 
-const emailRegex = /[^@]+@[^\.]+\..+/;
+const emailRegex = /[^@]+@[^.]+\..+/;
 
 interface RegisterForm {
   username: string;
