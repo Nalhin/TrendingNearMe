@@ -3,12 +3,12 @@
 
 # Trending Near Me
 
-Visualize Twitter trends based on location.
+Display Twitter trends based on selected location.
 
 ## Table of contents
 
-- [Description](#description)
 - [Features](#features)
+- [Description](#description)
 - [Presentation](#presentation)
 - [Technology Stack](#technology-stack)
 - [Project Architecture](#project-architecture)
@@ -18,22 +18,30 @@ Visualize Twitter trends based on location.
 - [Tests](#tests)
 - [License](#license)
 
+## Features
+
+* Twitter API integration
+* Leaflet map
+* Authorization and authentication
+* REST API
+* Two frontend applications (Angular and React)
+
 ## Description
 
 The main objective of this project was to utilize NX as a mono-repository management tool and test 
-its capabilities in a shared environment. 
-The secondary objective was to compare React with Angular and evaluate their pros and cons 
-in such an environment.
-
-## Features
+its capabilities in an environment with multiple TypeScript frameworks. 
 
 #### Backend
 
-Twitter API integration with custom user authorization and data persistence.
+REST API developed in NestJS.
+It features custom user authorization with the data persistence layer (MongoDB).
+The Twitter API is seamlessly encapsulated in its own services rendering the whole application independent of its implementation.
+Reactive programming enabled effective and linear data flow management.
 
 #### Frontend
 
-Interactive Leaflet map that displays trends near selected location and allows users to inspect and visualize their search history.
+Interactive Leaflet map which displays trends near locations selected by the users.
+It also enables them to inspect and visualize their personal search history.
 
 ## Presentation
 
@@ -41,21 +49,32 @@ Interactive Leaflet map that displays trends near selected location and allows u
 
 ![Dep graph](screenshots/api-schema.png)
 
+*Swagger API docs*
+
 #### React
 
+<a href="https://www.youtube.com/watch?v=JhKo3N3bbAg">
+    <img src="screenshots/frontend-react.gif" alt="Project overview React"/>
+</a>
+
+
 #### Angular
+
+<a href="https://youtu.be/3WkqADixNbs">
+    <img src="screenshots/frontend-angular.gif" alt="Project overview Angular"/>
+</a>
 
 ## Technology stack
 
 #### Frameworks & Libraries
 
 * NestJS
-* ReactS
+* React
 * Angular
 
 #### Summary
 
-The project was developed following modern web development trends and utilizing advanced typescript concepts such as:
+The project was developed following modern web development trends and utilizing advanced TypeScript concepts such as:
 
 * Decorators
 * Metadata
@@ -65,7 +84,7 @@ The project was developed following modern web development trends and utilizing 
  
 ## Project Architecture
 
-Project consists of the following applications & libraries.
+The project consists of the following applications & libraries.
 
 ```
 apps
@@ -90,12 +109,12 @@ npm run dep-graph
 
 ## Env schema
 
-Env file with the following schema has to be provided in the project's root directory before running the application
+The env file with the following schema must be provided in the root directory before running the application
 
 ```bash
 DB_PORT= Database port @type: Number @required
 DB_NAME= Database name @type: String @required
-PORT= Database port @type: Number @optional @default=8000
+PORT= Server port @type: Number @optional @default=8000
 JWT_SECRET= Jwt secret key @optional @default="jwt"
 JWT_EXPIRES_IN="7 days" @optional @default="7 days"
 DB_USER= Database user @required
@@ -135,7 +154,7 @@ docker-compose ./docker/docker-compose.dev.yml up -d
 npm run start backend
 ```
 
-#### Frontend React````
+#### Frontend React
 
 Prerequisites: Backend
 

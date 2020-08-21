@@ -6,10 +6,10 @@ import {
 
 import { axios } from '../config/axios.config';
 
-export function fetchLoginUser(loginUserDto: LoginUserDto) {
-  return axios.post<AuthUserResponseDto>('/auth/login', loginUserDto);
+export function fetchLoginUser(body: LoginUserDto) {
+  return axios.post<AuthUserResponseDto>('/auth/login', body);
 }
 
-export function fetchRegisterUser(registerUserDto: RegisterUserDto) {
-  return axios.post<AuthUserResponseDto>('/auth/register', registerUserDto);
+export function fetchRegisterUser(body: RegisterUserDto) {
+  return axios.post<AuthUserResponseDto>('/auth/register', body);
 }
